@@ -50,10 +50,11 @@ const staggerContainer = {
 }
 
 // Individual item inside a stagger grid
-const staggerItem = {
-  hidden: { opacity: 0, y: 26 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.44 } },
-}
+// eslint-disable-next-line no-unused-vars
+// const staggerItem = {
+//   hidden: { opacity: 0, y: 26 },
+//   visible: { opacity: 1, y: 0, transition: { duration: 0.44 } },
+// }
 
 export default function HomePage() {
 

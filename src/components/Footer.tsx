@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { siteMeta } from '../data/siteData'
 import styles from './Footer.module.css'
 
