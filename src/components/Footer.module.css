@@ -1,0 +1,40 @@
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 2rem 1rem 2.5rem;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.social {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: color 160ms ease;
+}
+
+.socialLink:hover {
+  color: var(--primary);
+}
+
+.copy {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}

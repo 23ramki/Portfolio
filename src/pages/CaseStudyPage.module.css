@@ -1,0 +1,102 @@
+.page {
+  padding-top: 5.6rem;
+  padding-bottom: 2rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  font-weight: 700;
+  margin: 0;
+}
+
+.title {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  margin-top: 0.6rem;
+}
+
+.summary {
+  max-width: 760px;
+  color: var(--muted);
+  margin: 0.8rem 0 0;
+  font-size: 1.06rem;
+}
+
+.section {
+  padding: 1.8rem 0 0.2rem;
+}
+
+.section h2 {
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  margin-bottom: 0.6rem;
+}
+
+.section p {
+  color: var(--muted);
+  max-width: 780px;
+}
+
+.list {
+  color: var(--muted);
+  max-width: 780px;
+  padding-left: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.docLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.docLink {
+  color: var(--primary-strong);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.docLink:hover {
+  text-decoration: underline;
+}
+
+.actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+  margin-bottom: 1.2rem;
+}
+
+.btnPrimary,
+.btnSecondary {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.72rem 1.2rem;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid transparent;
+  transition: transform 160ms ease, background-color 160ms ease;
+}
+
+.btnPrimary:hover,
+.btnSecondary:hover {
+  transform: translateY(-2px);
+}
+
+.btnPrimary {
+  background: var(--primary);
+  color: #ffffff;
+}
+
+.btnPrimary:hover {
+  background: var(--primary-strong);
+}
+
+.btnSecondary {
+  border-color: var(--line);
+  color: var(--text);
+  background: var(--btn-secondary-bg);
+}

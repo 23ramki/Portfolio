@@ -1,0 +1,65 @@
+.form {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form label {
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.form input,
+.form textarea {
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  padding: 0.62rem 0.75rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+.form input:focus,
+.form textarea:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+}
+
+.form textarea {
+  resize: vertical;
+}
+
+.submitBtn {
+  display: inline-block;
+  border-radius: 999px;
+  padding: 0.72rem 1.2rem;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  background: var(--primary);
+  color: #ffffff;
+  margin-top: 0.5rem;
+  transition: transform 160ms ease, background-color 160ms ease;
+}
+
+.submitBtn:hover {
+  transform: translateY(-2px);
+  background: var(--primary-strong);
+}
+
+.status {
+  min-height: 1.15rem;
+  margin: 0.2rem 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+}

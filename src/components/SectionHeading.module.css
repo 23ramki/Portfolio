@@ -1,0 +1,24 @@
+/*
+  CSS MODULES
+  ===========
+  This file is imported as `styles` in the component.
+  Every class name gets automatically scoped — `.heading` becomes
+  something like `_heading_k3x9a` in the browser. This means you'll
+  never have class name collisions between components.
+
+  You reference them as: className={styles.heading}
+*/
+
+.heading {
+  margin-bottom: 1.5rem;
+}
+
+.heading h2 {
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+}
+
+.subtitle {
+  max-width: 780px;
+  color: var(--muted);
+  margin: 0.4rem 0 0;
+}

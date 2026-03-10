@@ -1,0 +1,49 @@
+.item {
+  position: relative;
+  margin-bottom: 1.35rem;
+  padding-left: 0.6rem;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+/* The orange dot on the timeline */
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--accent);
+  position: absolute;
+  left: -1.63rem;
+  top: 0.43rem;
+  box-shadow: 0 0 0 4px rgba(226, 149, 77, 0.16);
+}
+
+.role {
+  font-size: 1.15rem;
+  margin-bottom: 0.15rem;
+}
+
+.timeline {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 0.2rem 0 0.5rem;
+}
+
+/* All experience points — uniform size, spacing, and style */
+.points {
+  margin: 0.4rem 0 0;
+  padding-left: 1.1rem;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.68;
+}
+
+.points li {
+  margin-bottom: 0.45rem;
+}
+
+.points li:last-child {
+  margin-bottom: 0;
+}

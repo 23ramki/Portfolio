@@ -1,0 +1,133 @@
+/*
+  DESIGN TOKENS
+  =============
+  CSS custom properties act as variables. Define once, use everywhere.
+  The :root selector targets the <html> element — these are your defaults (light theme).
+  [data-theme="dark"] overrides them when dark mode is active.
+*/
+
+:root {
+  /* Background gradient */
+  --bg-grad: linear-gradient(180deg, #f8f5ef 0%, #f4efe7 55%, #f8f4ec 100%);
+
+  /* Surface and text colors */
+  --surface: #fffdfa;
+  --text: #222222;
+  --muted: #5c5751;
+  --line: #d7cfc4;
+
+  /* Brand colors */
+  --primary: #006d77;
+  --primary-strong: #00545c;
+  --accent: #e2954d;
+
+  /* Shadows and effects */
+  --shadow: 0 14px 30px rgba(34, 34, 34, 0.08);
+  --header-bg: rgba(248, 244, 236, 0.86);
+  --header-border: rgba(215, 207, 196, 0.7);
+  --stat-bg: rgba(255, 255, 255, 0.78);
+  --btn-secondary-bg: rgba(255, 255, 255, 0.65);
+  --footer-border: rgba(215, 207, 196, 0.9);
+  --glow-primary: rgba(0, 109, 119, 0.17);
+  --glow-accent: rgba(226, 149, 77, 0.16);
+
+  /* Layout tokens */
+  --radius: 16px;
+  --maxw: 1080px;
+
+  /* Mobile drawer — soft teal wash: complements brand primary (#006d77) */
+  --drawer-bg: #e8f4f5;
+}
+
+/* Dark theme overrides — same variable names, different values */
+[data-theme="dark"] {
+  --bg-grad: linear-gradient(180deg, #111a22 0%, #0c141b 55%, #101921 100%);
+  --surface: #13212b;
+  --text: #e5ebf1;
+  --muted: #b1bfca;
+  --line: #2b3a46;
+  --primary: #4bc2ca;
+  --primary-strong: #2fa9b1;
+  --accent: #f0aa62;
+  --shadow: 0 16px 34px rgba(0, 0, 0, 0.34);
+  --header-bg: rgba(10, 18, 24, 0.84);
+  --header-border: rgba(43, 58, 70, 0.86);
+  --stat-bg: rgba(19, 33, 43, 0.9);
+  --btn-secondary-bg: rgba(19, 33, 43, 0.72);
+  --footer-border: rgba(43, 58, 70, 0.95);
+  --glow-primary: rgba(75, 194, 202, 0.2);
+  --glow-accent: rgba(240, 170, 98, 0.18);
+
+  /* Mobile drawer — deep teal: directly complements brand primary in dark mode */
+  --drawer-bg: #0c2830;
+}
+
+/*
+  BASE RESET
+  ==========
+  Normalize browser defaults so every browser starts from the same point.
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Sora", sans-serif;
+  color: var(--text);
+  background: var(--bg-grad);
+  line-height: 1.6;
+}
+
+/* Default link styling inherits text color */
+a {
+  color: inherit;
+}
+
+/*
+  Headings use the serif font for visual contrast.
+  font-family sets what font to use.
+  line-height controls spacing between lines.
+*/
+h1,
+h2,
+h3 {
+  font-family: "Source Serif 4", serif;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/*
+  BACKGROUND GLOW
+  ================
+  Two subtle radial gradients fixed behind everything.
+  pointer-events: none ensures it doesn't block clicks.
+*/
+.background-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 85% 15%, var(--glow-primary), transparent 35%),
+    radial-gradient(circle at 10% 70%, var(--glow-accent), transparent 34%);
+  z-index: -1;
+}
+
+/*
+  CONTAINER
+  =========
+  Centers content with a max-width and horizontal padding.
+  min() picks the smaller value — so on narrow screens you get full width minus 2rem,
+  on wide screens you get --maxw.
+*/
+.container {
+  width: min(100% - 2rem, var(--maxw));
+  margin-inline: auto;
+}

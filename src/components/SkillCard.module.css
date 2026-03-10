@@ -1,0 +1,28 @@
+.card {
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--skill-accent, var(--primary));
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.25rem 1.25rem 1.1rem;
+  cursor: default;
+}
+
+.icon {
+  display: block;
+  font-size: 1.65rem;
+  margin-bottom: 0.55rem;
+  line-height: 1;
+}
+
+.title {
+  margin-bottom: 0.45rem;
+  font-size: 1.1rem;
+}
+
+.text {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.55;
+}

@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create vite@latest . -- --template react-ts)",
+      "Bash(npm install react-router-dom)",
+      "Bash(npm ls react)",
+      "Bash(npm install framer-motion)",
+      "Bash(\"/Users/ramki/Desktop/untitled folder/Portfolio/src/components/CaseStudyCard.tsx\":*)",
+      "Bash(__NEW_LINE_5c91e7f37efd1f71__ cat)",
+      "Bash(\"/Users/ramki/Desktop/untitled folder/Portfolio/src/components/DocumentCard.tsx\":*)",
+      "Bash(__NEW_LINE_dec176eae94d691e__ cat)",
+      "Bash(\"/Users/ramki/Desktop/untitled folder/Portfolio/src/pages/HomePage.tsx\":*)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(node -e \"const fm = require\\(''./node_modules/framer-motion/package.json''\\); console.log\\(''framer-motion peerDeps:'', JSON.stringify\\(fm.peerDependencies\\)\\); console.log\\(''version:'', fm.version\\)\")",
+      "Bash(python3 -c \":*)",
+      "Bash(pip3 install pypdf --quiet)",
+      "Bash(pip3 install pypdf --break-system-packages --quiet)"
+    ]
+  }
+}
