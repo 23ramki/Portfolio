@@ -44,9 +44,9 @@ export const about: AboutContent = {
 
 // ─── Stats ────────────────────────────────────────────────
 export const stats: Stat[] = [
-  { value: '3+', label: 'Years in Revenue Analytics' },
-  { value: '70+', label: 'Dealerships Tracked' },
-  { value: '25%', label: 'Less Manual Reporting' },
+  { value: '7', label: 'End-to-End Case Studies' },
+  { value: '4', label: 'Industry Certifications' },
+  { value: '200%+', label: 'Registration Growth' },
 ]
 
 // ─── Skills ───────────────────────────────────────────────
@@ -83,17 +83,20 @@ export const experiences: Experience[] = [
   {
     role: 'Revenue Operations & Analytics Analyst | Orange Care Solutions',
     timeline: 'Oct 2022 - Jan 2024',
-    text: 'Led KPI reporting across 70+ OEM-approved service centers, facilitated monthly business reviews with leadership, and drove 12% labor cost variance reduction through billing, staffing, and procurement analysis.',
+    text: 'Delivered structured monthly KPI performance reviews to Dealer Principals and Directors across 70+ OEM-approved dealership service centers.',
     bullets: [
-      'Tracked upsell conversion of value-added services (ceramic coating, rust protection, AC services), influencing dealer-level revenue optimization strategies.',
+      'Designed Tableau dashboards translating operational and CRM data into executive-ready narratives tied to revenue, margin, and SLA performance.',
+      'Analyzed 30-day recurring billing cycles, technician deployment, and material consumption to improve cost visibility and margin control (contributed to 12% reduction in labor cost variance).',
+      'Standardized KPI definitions across branches to improve reporting trust and decision alignment.',
     ],
   },
   {
     role: 'Sales Analyst | Frontier',
     timeline: 'Jan 2022 - Sep 2022',
-    text: 'Automated recurring revenue reporting using SQL and Excel, reducing manual reporting work by 25% and improving forecast reliability through stronger CRM data governance.',
+    text: 'Automated weekly revenue reporting using Excel VBA + Power Query, reducing manual data entry by 25% and improving reporting reliability for leadership.',
     bullets: [
-      'Supported CRM data integrity through recurring audits and stakeholder follow-ups on field hygiene, stage definitions, and data completeness.',
+      'Monitored pipeline health and conversion gaps to improve forecasting accuracy; aligned Salesforce reporting logic with stakeholder expectations for quarterly planning.',
+      'Supported CRM data integrity through recurring audits and stakeholder follow-ups (definitions, stage hygiene, missing fields).',
     ],
   },
   {
@@ -101,7 +104,6 @@ export const experiences: Experience[] = [
     timeline: 'Jan 2021 - Sep 2021',
     text: 'Analyzed segmentation and GTM data to improve campaign performance, contributing to a 35% client base increase and over 200% growth in registrations.',
     bullets: [
-      'Supported Go-to-Market (GTM) strategies by analyzing customer segmentation data, identifying key demographics that expanded the client base by 35%.',
       'Evaluated digital touchpoints to identify friction in the sales funnel, implementing UI/UX changes that improved customer retention.',
     ],
   },
