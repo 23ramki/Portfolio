@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
 
-const smooth = [0.16, 1, 0.3, 1]
+const smooth: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 export default function PageTransition({ children }: { children: ReactNode }) {
   return (

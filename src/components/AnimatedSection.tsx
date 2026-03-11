@@ -17,7 +17,7 @@ interface AnimatedSectionProps {
 export default function AnimatedSection({
   children,
   className,
-  delay = 0,
+  delay: _delay = 0,
   direction = 'up',
   distance = 50,
   scale: scaleProp,
