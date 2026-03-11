@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react'
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import { motion, AnimatePresence, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion'
 import {
   about,
   caseStudies,
@@ -109,20 +109,58 @@ export default function HomePage() {
     return () => clearInterval(timer)
   }, [nextPhoto])
 
-  // 3D parallax for profile photo
-  const heroRef = useRef<HTMLElement>(null)
-  const { scrollYProgress: heroScroll } = useScroll({
-    target: heroRef,
-    offset: ['start start', 'end start'],
-  })
-  const photoY = useTransform(heroScroll, [0, 1], [0, -60])
-  const photoScale = useTransform(heroScroll, [0, 0.4], [1, 1.12])
-  const photoRotateX = useTransform(heroScroll, [0, 0.5], [0, -12])
-  const photoRotateY = useTransform(heroScroll, [0, 0.5], [0, 6])
-  const glowScale = useTransform(heroScroll, [0, 0.5], [1, 1.6])
-  const glowOpacity = useTransform(heroScroll, [0, 0.5], [0.18, 0.45])
-  const glowBlur = useTransform(heroScroll, [0, 0.5], [16, 28])
-  const glowFilter = useTransform(glowBlur, (v) => `blur(${v}px)`)
+  // 3D tilt for profile photo — tracks mouse position
+  const photoRef = useRef<HTMLDivElement>(null)
+  const rotateX = useMotionValue(0)
+  const rotateY = useMotionValue(0)
+  const photoScale = useMotionValue(1)
+  const shadowX = useMotionValue(0)
+  const shadowY = useMotionValue(8)
+  const shadowBlur = useMotionValue(20)
+  const shadowOp = useMotionValue(0.25)
+
+  // Smooth spring physics for the tilt
+  const springConfig = { stiffness: 150, damping: 20, mass: 0.5 }
+  const smoothRotateX = useSpring(rotateX, springConfig)
+  const smoothRotateY = useSpring(rotateY, springConfig)
+  const smoothScale = useSpring(photoScale, springConfig)
+  const smoothShadowX = useSpring(shadowX, springConfig)
+  const smoothShadowY = useSpring(shadowY, springConfig)
+  const smoothShadowBlur = useSpring(shadowBlur, springConfig)
+  const smoothShadowOp = useSpring(shadowOp, springConfig)
+
+  // Compose dynamic box-shadow from spring values
+  const photoShadow = useMotionTemplate`${smoothShadowX}px ${smoothShadowY}px ${smoothShadowBlur}px rgba(0,0,0,${smoothShadowOp})`
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const el = photoRef.current
+    if (!el) return
+    const rect = el.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+    // Normalize -1 to 1
+    const nx = (e.clientX - centerX) / (rect.width / 2)
+    const ny = (e.clientY - centerY) / (rect.height / 2)
+    // Tilt: mouse up → rotateX positive (tilt toward you), mouse right → rotateY positive
+    rotateX.set(-ny * 18)
+    rotateY.set(nx * 18)
+    photoScale.set(1.08)
+    // Shadow shifts opposite to tilt for realism
+    shadowX.set(-nx * 16)
+    shadowY.set(-ny * 16 + 12)
+    shadowBlur.set(40)
+    shadowOp.set(0.45)
+  }, [rotateX, rotateY, photoScale, shadowX, shadowY, shadowBlur, shadowOp])
+
+  const handleMouseLeave = useCallback(() => {
+    rotateX.set(0)
+    rotateY.set(0)
+    photoScale.set(1)
+    shadowX.set(0)
+    shadowY.set(8)
+    shadowBlur.set(20)
+    shadowOp.set(0.25)
+  }, [rotateX, rotateY, photoScale, shadowX, shadowY, shadowBlur, shadowOp])
 
   return (
     <AnimatePresence>
@@ -133,16 +171,16 @@ export default function HomePage() {
           transition={{ duration: 0.6, ease: smooth }}
         >
           {/* ─── Hero ─── */}
-          <section ref={heroRef} className={`${styles.hero} container`}>
+          <section className={`${styles.hero} container`}>
             <div className={styles.heroContent}>
               <motion.h1
                 className={styles.title}
                 style={{ perspective: 600 }}
               >
-                <SplitText text="Hi, I'm" delay={0.2} />
-                {' '}
+                <SplitText text="I build dashboards that drive revenue." delay={0.2} />
+                <br />
                 <span>
-                  <SplitText text={siteMeta.name} className={styles.titleAccent} delay={0.5} />
+                  <SplitText text={`I'm ${siteMeta.name}.`} className={styles.titleAccent} delay={0.7} />
                 </span>
               </motion.h1>
 
@@ -183,35 +221,33 @@ export default function HomePage() {
               </motion.div>
             </div>
 
-            {/* 3D Parallax Profile Photo */}
+            {/* 3D Tilt Profile Photo */}
             <motion.div
+              ref={photoRef}
               className={styles.heroImageWrap}
               initial={{ opacity: 0, scale: 0.7 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3, duration: 1.2, ease: smooth }}
-              style={{ perspective: 600 }}
+              onMouseMove={handleMouseMove}
+              onMouseLeave={handleMouseLeave}
+              style={{ perspective: 800 }}
             >
-              <motion.div
-                className={styles.photoInner}
+              {/* Glow behind photo */}
+              <div className={styles.photoGlow} />
+              {/* Photo that tilts in 3D on hover */}
+              <motion.img
+                className={styles.heroPhoto}
+                src={profilePhoto}
+                alt={siteMeta.name}
+                width={340}
+                height={340}
                 style={{
-                  y: photoY,
-                  scale: photoScale,
-                  rotateX: photoRotateX,
-                  rotateY: photoRotateY,
+                  rotateX: smoothRotateX,
+                  rotateY: smoothRotateY,
+                  scale: smoothScale,
+                  boxShadow: photoShadow,
                 }}
-              >
-                <motion.img
-                  className={styles.heroPhoto}
-                  src={profilePhoto}
-                  alt={siteMeta.name}
-                  width={340}
-                  height={340}
-                />
-                <motion.div
-                  className={styles.photoGlow}
-                  style={{ scale: glowScale, opacity: glowOpacity, filter: glowFilter }}
-                />
-              </motion.div>
+              />
             </motion.div>
           </section>
 
@@ -291,7 +327,7 @@ export default function HomePage() {
             <AnimatedSection direction="up" distance={60} scale={0.97}>
               <SectionHeading
                 title="Case Studies"
-                subtitle="Project case studies with documented methods, modeling decisions, and outcomes."
+                subtitle="End-to-end projects — from problem framing to model evaluation and strategic recommendations."
               />
             </AnimatedSection>
             <motion.div
@@ -316,7 +352,7 @@ export default function HomePage() {
             <AnimatedSection direction="up" distance={60} scale={0.97}>
               <SectionHeading
                 title="Project Documents"
-                subtitle="Original project documentation and deliverables."
+                subtitle="Reports, notebooks, and decks behind the case studies."
               />
             </AnimatedSection>
             <motion.div
@@ -449,7 +485,7 @@ export default function HomePage() {
             <AnimatedSection direction="up" distance={60} scale={0.97}>
               <SectionHeading
                 title="Contact"
-                subtitle="Open to business analyst, revenue operations, and analytics roles across the United States (remote, hybrid, or on-site). Send a message and I'll follow up directly."
+                subtitle="Actively seeking business analyst and revenue operations roles across the US. Let's connect."
               />
             </AnimatedSection>
             <AnimatedSection delay={0.12} direction="up" distance={40} scale={0.98}>

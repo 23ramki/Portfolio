@@ -28,9 +28,9 @@ export const profilePhoto: string = '/assets/profile-photo.jpg'
 // ─── Hero ─────────────────────────────────────────────────
 export const hero: HeroContent = {
   eyebrow: 'Business Analyst Portfolio',
-  title: "Hi, I'm Adithya Ramakrishnan",
+  title: "I build dashboards that drive revenue. I'm Adithya Ramakrishnan.",
   summary:
-    'Data-driven professional with 3+ years of experience bridging analytics and commercial strategy in distributed B2B services. I design KPI dashboards that create operational clarity, strengthen stakeholder trust in reporting, and guide revenue and margin decisions across 70+ locations.',
+    '3+ years designing KPI dashboards for B2B recurring revenue operations. I make data credible, decisions faster, and stakeholder reviews sharper — across 70+ locations.',
 }
 
 // ─── About ────────────────────────────────────────────────
@@ -44,9 +44,9 @@ export const about: AboutContent = {
 
 // ─── Stats ────────────────────────────────────────────────
 export const stats: Stat[] = [
-  { value: '3+', label: 'Years of Experience' },
-  { value: '70+', label: 'Locations Supported' },
-  { value: '25%', label: 'Reporting Effort Reduced' },
+  { value: '3+', label: 'Years in Revenue Analytics' },
+  { value: '70+', label: 'Dealerships Tracked' },
+  { value: '25%', label: 'Less Manual Reporting' },
 ]
 
 // ─── Skills ───────────────────────────────────────────────
@@ -73,7 +73,7 @@ export const skills: Skill[] = [
   },
   {
     title: 'ML & Data Science',
-    text: 'Predictive Modeling, Classification & Regression (Logistic Regression, XGBoost, Random Forest), Feature Engineering, PCA — applied through graduate coursework and project case studies',
+    text: 'Predictive Modeling, Classification & Regression, XGBoost, Random Forest, Feature Engineering, PCA',
     icon: '🤖',
   },
 ]
@@ -101,7 +101,8 @@ export const experiences: Experience[] = [
     timeline: 'Jan 2021 - Sep 2021',
     text: 'Analyzed segmentation and GTM data to improve campaign performance, contributing to a 35% client base increase and over 200% growth in registrations.',
     bullets: [
-      'Evaluated digital touchpoints to identify friction in the sales funnel, implementing changes that improved customer retention and conversion rates.',
+      'Supported Go-to-Market (GTM) strategies by analyzing customer segmentation data, identifying key demographics that expanded the client base by 35%.',
+      'Evaluated digital touchpoints to identify friction in the sales funnel, implementing UI/UX changes that improved customer retention.',
     ],
   },
 ]

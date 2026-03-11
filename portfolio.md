@@ -27,17 +27,20 @@
 Portfolio/
 ├── src/
 │   ├── components/          # Reusable UI components (each with .module.css)
-│   │   ├── AnimatedSection    — Scroll-reveal wrapper (Framer Motion whileInView)
+│   │   ├── AnimatedSection    — Scroll-driven fade-in/fade-out wrapper (useScroll + useTransform)
 │   │   ├── BackToTop          — Scroll-to-top floating button
-│   │   ├── CaseStudyCard      — Case study preview card with tags & hover lift
+│   │   ├── CaseStudyCard      — Case study preview card with 3D tilt hover
 │   │   ├── ContactForm        — Web3Forms-powered contact form
-│   │   ├── DocumentCard       — Downloadable document card
+│   │   ├── DocumentCard       — Downloadable document card with 3D tilt hover
 │   │   ├── Footer             — LinkedIn, Email, Resume links
-│   │   ├── Header             — Nav bar + mobile hamburger menu + theme toggle
+│   │   ├── Header             — Auto-hide nav bar + mobile drawer + theme toggle + animated underlines
+│   │   ├── PageTransition     — Route transition wrapper (fade + slide, for AnimatePresence)
+│   │   ├── ScrollProgress     — Thin accent-colored progress bar fixed at top of viewport
 │   │   ├── SectionHeading     — Reusable section title with optional subtitle
-│   │   ├── SkillCard          — Skill category card with accent colors
-│   │   ├── StatCard           — Stat value + label with hover animation
-│   │   ├── ThemeToggle        — Light/dark mode toggle (sun/moon icons)
+│   │   ├── SkillCard          — Skill category card with accent colors + 3D tilt hover
+│   │   ├── StatCard           — Stat value + label with 3D tilt hover
+│   │   ├── ThemeToggle        — Light/dark mode toggle (sun/moon icons), inside Header
+│   │   ├── TiltCard           — Reusable mouse-tracking 3D tilt wrapper (spring physics + dynamic shadow)
 │   │   └── TimelineItem       — Experience entry with timeline styling
 │   ├── context/
 │   │   └── ThemeContext.tsx    # Dark/light mode via React Context + localStorage
@@ -50,7 +53,7 @@ Portfolio/
 │   │   └── portfolio.ts        # TypeScript interfaces for all data
 │   ├── App.tsx                 # Router setup
 │   ├── main.tsx                # React entry point + ThemeProvider wrapper
-│   └── global.css              # CSS variables, theme definitions, base styles
+│   └── global.css              # CSS variables, theme definitions, base styles, section-divider
 ├── public/
 │   ├── favicon.svg               # Orange "AR" serif favicon (transparent bg)
 │   └── assets/
@@ -104,12 +107,45 @@ All portfolio content is centralized in `src/data/siteData.ts`. To update text, 
 - Global theme colors use CSS variables (`--bg-grad`, `--surface`, `--text`, `--primary`, etc.)
 - No CSS-in-JS library — pure CSS Modules
 
-### Animations
-- `AnimatedSection` wraps content sections for scroll-reveal (fade + slide up)
-- `StatCard`, `SkillCard`, `CaseStudyCard` have Framer Motion hover effects
-- HomePage uses stagger animations for grid layouts
-- Header mobile drawer uses spring animations
-- Photography slideshow uses `AnimatePresence` for cross-fade transitions
+### Animations (Updated March 11, 2026)
+
+#### Header
+- **Auto-hide on scroll**: Header slides up (`translateY(-100%)`) when scrolling down, reappears on scroll up
+- **Animated nav underlines**: `::after` pseudo-element with `scaleX(0→1)` on hover, cubic-bezier easing
+- **Mobile drawer**: Opaque backgrounds (`#f4f1eb` light / `#0e1a22` dark), rendered outside `<header>` to avoid `backdrop-filter` containing block issue
+
+#### Scroll Animations
+- `AnimatedSection` uses `useScroll` + `useTransform` for scroll-driven fade-in/fade-out
+  - Bidirectional: content fades out when scrolled past, fades in when scrolled to
+  - Supports `once` prop for fade-in only (no fade-out)
+  - Opacity maps: `[0, 0.25, 0.75, 1] → [0, 1, 1, 0]`
+- Section dividers (`<hr className="section-divider">`) between every major section
+
+#### Hero Section
+- **Word-by-word stagger text reveal**: `SplitText` component with `rotateX` perspective transform
+- **3D tilt profile photo**: Mouse-tracking via `useMotionValue` + `useSpring`
+  - Tilts up to ±18° following cursor position
+  - Scales to 1.08 on hover
+  - Dynamic box-shadow shifts opposite to tilt direction (via `useMotionTemplate`)
+  - Spring physics: `stiffness: 150, damping: 20, mass: 0.5`
+  - Teal radial glow behind photo
+- **Entrance animation**: `AnimatePresence` + `entered` state with fade-in
+
+#### Card Hover Effects
+- **`TiltCard` wrapper component** (reusable): Mouse-tracking 3D tilt with spring physics + dynamic shadow
+  - Used by: `StatCard` (tilt 10°, scale 1.05), `SkillCard` (tilt 10°, scale 1.03), `CaseStudyCard` (tilt 8°, scale 1.02), `DocumentCard` (tilt 10°, scale 1.03)
+  - Spring config: `stiffness: 200, damping: 22, mass: 0.4`
+  - Shadow shifts opposite to tilt, blur increases from 12→28px on hover
+
+#### Photography Slideshow
+- Ken Burns effect (slow zoom `scale: [1, 1.05]` over 5s during display)
+- `AnimatePresence mode="popLayout"` for overlapping crossfade transitions
+- 5-second auto-advance interval
+
+#### Other
+- `ScrollProgress` component: thin accent bar at top of viewport (created, not yet integrated into App.tsx)
+- `PageTransition` component: route transition wrapper with fade + slide (created, not yet integrated into App.tsx)
+- Stagger animations for grid layouts (`staggerChildren: 0.1`)
 
 ---
 
@@ -128,9 +164,9 @@ All portfolio content is centralized in `src/data/siteData.ts`. To update text, 
 **Added:** March 10, 2026
 **Unsplash profile:** https://unsplash.com/@theadithyar
 
-- Auto-rotating slideshow (6 photos, 4-second interval)
+- Auto-rotating slideshow (6 photos, 5-second interval)
 - Left/right navigation arrows + dot indicators
-- Framer Motion slide transitions (`AnimatePresence`)
+- Ken Burns zoom + crossfade transitions (`AnimatePresence mode="popLayout"`)
 - Photos stored in `public/assets/photography/` (resized to 800px wide, ~450KB total)
 - "View more on Unsplash" link to full profile
 - Located between Education and Contact sections on HomePage
@@ -196,11 +232,20 @@ Vercel detects the push and redeploys automatically (~1-2 minutes).
 
 | Commit   | Date       | Description                                              |
 |----------|------------|----------------------------------------------------------|
+| `1c5b35a` | 2026-03-11 | Update portfolio from local MacBook (animations, header, drawer, scroll effects) |
 | `ab6cb90` | 2026-03-10 | Add favicon, photography slideshow, and project docs     |
 | `8d4811a` | 2026-03-10 | Update resume and switch contact form to Web3Forms       |
 | `4da52e8` | 2026-03-09 | Fix compiler issues (ESLint config, Footer, HomePage)    |
 | `a964900` | 2026-03-09 | Initial portfolio (all components, pages, styles, assets)|
 | `b014cc9` | 2026-03-09 | Initial commit (README.md)                               |
+
+---
+
+## Pending / Not Yet Integrated
+
+- **ScrollProgress**: Component created (`src/components/ScrollProgress.tsx`) but not yet added to `App.tsx`
+- **PageTransition**: Component created (`src/components/PageTransition.tsx`) but not yet wrapping routes in `App.tsx` with `AnimatePresence` + `useLocation` key
+- **CaseStudyPage polish**: No animations yet — could add entrance animations, animated sections, hero banner, sticky sidebar nav
 
 ---
 
@@ -219,6 +264,7 @@ Vercel detects the push and redeploys automatically (~1-2 minutes).
 | Update photography slideshow  | Replace/add images in `public/assets/photography/`, update `photos` array in `HomePage.tsx` |
 | Modify theme colors           | `src/global.css` → `:root` and `[data-theme="dark"]` |
 | Add a new page                | Create in `src/pages/`, add route in `App.tsx` |
+| Change hero greeting text     | `HomePage.tsx` → `SplitText text="..."` lines (~180-181) |
 
 ---
 

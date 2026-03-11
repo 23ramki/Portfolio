@@ -49,13 +49,10 @@
 .heroImageWrap {
   position: relative;
   flex-shrink: 0;
+  overflow: visible;          /* allow photo to pop out */
+  width: 300px;
+  height: 300px;
   /* perspective is set inline via framer-motion */
-}
-
-.photoInner {
-  position: relative;
-  transform-style: preserve-3d;
-  will-change: transform;
 }
 
 .heroPhoto {
@@ -66,17 +63,19 @@
   border: 3px solid var(--line);
   display: block;
   position: relative;
-  z-index: 1;
-  /* shadow is driven dynamically via framer-motion */
+  z-index: 2;
+  will-change: transform, box-shadow;
+  transform-style: preserve-3d;
+  transition: box-shadow 0.1s ease-out;
 }
 
 .photoGlow {
   position: absolute;
-  inset: -18px;
+  inset: -24px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--primary) 0%, transparent 65%);
+  background: radial-gradient(circle, var(--primary) 0%, transparent 60%);
   z-index: 0;
-  filter: blur(16px);
+  filter: blur(20px);
   pointer-events: none;
 }
 
@@ -130,7 +129,7 @@
 
 /* ─── About ─── */
 .aboutText {
-  max-width: 720px;
+  max-width: 100%;
 }
 
 .aboutText p {
@@ -403,6 +402,11 @@
     order: -1;
   }
 
+  .heroImageWrap {
+    width: 200px;
+    height: 200px;
+  }
+
   .heroPhoto {
     width: 200px;
     height: 200px;
@@ -440,6 +444,11 @@
 @media (max-width: 600px) {
   .hero {
     padding-top: 3rem;
+  }
+
+  .heroImageWrap {
+    width: 160px;
+    height: 160px;
   }
 
   .heroPhoto {
