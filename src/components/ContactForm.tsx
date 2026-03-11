@@ -1,63 +1,73 @@
 /*
   CONTACT FORM COMPONENT
   ======================
-  A form with validation that opens a mailto: link on submit.
+  Submits form data via Web3Forms API — no backend needed.
+  Messages are delivered straight to your email inbox.
 
-  KEY CONCEPTS:
-
-  1. useState<T>(initialValue):
-     `const [name, setName] = useState<string>('')`
-     - `name` is the CURRENT value (starts as '')
-     - `setName` is the SETTER function — call it to update the value
-     - `<string>` is the generic type — tells TS what kind of value this state holds
-     - When you call setName('Adithya'), React re-renders and `name` becomes 'Adithya'
-
-  2. Event Types:
-     `React.FormEvent<HTMLFormElement>` — the type for form submission events
-     `React.ChangeEvent<HTMLInputElement>` — the type for input change events
-     These give you autocomplete on properties like `e.target.value`
-
-  3. Controlled Inputs:
-     In React, form inputs are "controlled" — their value comes from state.
-     `value={name}` makes the input display whatever `name` state holds.
-     `onChange` fires on every keystroke and updates the state.
-     This is a two-way binding: state → input display, input change → state update.
+  Web3Forms: https://web3forms.com
+  - Free, unlimited submissions
+  - No server-side code required
+  - Sends form data to the email tied to your access key
 */
 
 import { useState } from 'react'
 import type { FormEvent, ChangeEvent } from 'react'
-import { siteMeta } from '../data/siteData'
 import styles from './ContactForm.module.css'
 
+const WEB3FORMS_ACCESS_KEY = '11803f1c-9e45-4a78-8b66-886e5fc6935d'
+
 export default function ContactForm() {
-  // Each form field gets its own state variable
   const [name, setName] = useState<string>('')
   const [email, setEmail] = useState<string>('')
   const [company, setCompany] = useState<string>('')
   const [message, setMessage] = useState<string>('')
   const [status, setStatus] = useState<string>('')
+  const [submitting, setSubmitting] = useState<boolean>(false)
 
-  // Form submit handler — note the typed event parameter
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()  // Prevent the browser's default form submission (page reload)
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
 
-    // Validation
     if (!name.trim() || !email.trim() || !message.trim()) {
       setStatus('Please complete Name, Email, and Message.')
       return
     }
 
-    // Build mailto link
-    const subject = encodeURIComponent(`Portfolio Inquiry - ${name}`)
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nCompany: ${company || 'N/A'}\n\nMessage:\n${message}`
-    )
-    window.location.href = `mailto:${siteMeta.email}?subject=${subject}&body=${body}`
-    setStatus('Draft email opened in your mail app.')
+    setSubmitting(true)
+    setStatus('')
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Portfolio Inquiry - ${name}`,
+          from_name: name,
+          name,
+          email,
+          company: company || 'N/A',
+          message,
+        }),
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        setStatus('Message sent successfully! I\'ll get back to you soon.')
+        setName('')
+        setEmail('')
+        setCompany('')
+        setMessage('')
+      } else {
+        setStatus('Something went wrong. Please try again.')
+      }
+    } catch {
+      setStatus('Network error. Please try again later.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
-  // Reusable change handler — ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  // tells TS this handles both <input> and <textarea> elements
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     setter: (value: string) => void
@@ -105,11 +115,10 @@ export default function ContactForm() {
         onChange={(e) => handleChange(e, setMessage)}
       />
 
-      <button className={styles.submitBtn} type="submit">
-        Send Message
+      <button className={styles.submitBtn} type="submit" disabled={submitting}>
+        {submitting ? 'Sending...' : 'Send Message'}
       </button>
 
-      {/* Status message — only renders when status is non-empty */}
       {status && (
         <p className={styles.status} role="status" aria-live="polite">
           {status}
