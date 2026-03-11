@@ -35,8 +35,8 @@
   --radius: 16px;
   --maxw: 1080px;
 
-  /* Mobile drawer — soft teal wash: complements brand primary (#006d77) */
-  --drawer-bg: #e8f4f5;
+  /* Mobile drawer — opaque */
+  --drawer-bg: #f4f1eb;
 }
 
 /* Dark theme overrides — same variable names, different values */
@@ -58,8 +58,8 @@
   --glow-primary: rgba(75, 194, 202, 0.2);
   --glow-accent: rgba(240, 170, 98, 0.18);
 
-  /* Mobile drawer — deep teal: directly complements brand primary in dark mode */
-  --drawer-bg: #0c2830;
+  /* Mobile drawer — opaque dark */
+  --drawer-bg: #0e1a22;
 }
 
 /*
@@ -130,4 +130,13 @@ h3 {
 .container {
   width: min(100% - 2rem, var(--maxw));
   margin-inline: auto;
+}
+
+/* ─── Section divider — subtle gradient fade between sections ─── */
+.section-divider {
+  height: 1px;
+  border: none;
+  margin: 0;
+  background: linear-gradient(90deg, transparent, var(--line) 30%, var(--line) 70%, transparent);
+  opacity: 0.6;
 }

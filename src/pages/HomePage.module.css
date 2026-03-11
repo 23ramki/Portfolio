@@ -49,6 +49,13 @@
 .heroImageWrap {
   position: relative;
   flex-shrink: 0;
+  /* perspective is set inline via framer-motion */
+}
+
+.photoInner {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .heroPhoto {
@@ -57,20 +64,20 @@
   object-fit: cover;
   border-radius: 50%;
   border: 3px solid var(--line);
-  box-shadow: var(--shadow);
   display: block;
   position: relative;
   z-index: 1;
+  /* shadow is driven dynamically via framer-motion */
 }
 
 .photoGlow {
   position: absolute;
-  inset: -12px;
+  inset: -18px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
-  opacity: 0.15;
+  background: radial-gradient(circle, var(--primary) 0%, transparent 65%);
   z-index: 0;
-  filter: blur(12px);
+  filter: blur(16px);
+  pointer-events: none;
 }
 
 /* ─── Buttons ─── */

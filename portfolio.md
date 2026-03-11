@@ -51,19 +51,23 @@ Portfolio/
 │   ├── App.tsx                 # Router setup
 │   ├── main.tsx                # React entry point + ThemeProvider wrapper
 │   └── global.css              # CSS variables, theme definitions, base styles
-├── public/assets/              # Static files (PDFs, images) served at /assets/
-│   ├── Adithya_Ramakrishnan_Resume.pdf
-│   ├── profile-photo.jpg
-│   ├── BA_with_R_Project_Final.pdf
-│   ├── BA_with_R_Project_PPT.pptx
-│   ├── AppML_Project_Group2.pdf
-│   ├── route_score_prediction.ipynb
-│   ├── BUAN6335_HBR_John_Deere_Group2.pdf
-│   ├── Disneys_Strategic_Goals_ML_Use_Cases.pdf
-│   ├── DoorDash_Delivering_Convenience.pdf
-│   ├── Doordash_Presentation.pdf
-│   └── InsurCare_Database_Foundation.docx
-├── index.html                  # HTML entry, loads Sora + Source Serif 4 fonts
+├── public/
+│   ├── favicon.svg               # Orange "AR" serif favicon (transparent bg)
+│   └── assets/
+│       ├── Adithya_Ramakrishnan_Resume.pdf
+│       ├── profile-photo.jpg
+│       ├── photography/           # 6 compressed photos for slideshow (~450KB total)
+│       │   ├── photo-1.jpg through photo-6.jpg
+│       ├── BA_with_R_Project_Final.pdf
+│       ├── BA_with_R_Project_PPT.pptx
+│       ├── AppML_Project_Group2.pdf
+│       ├── route_score_prediction.ipynb
+│       ├── BUAN6335_HBR_John_Deere_Group2.pdf
+│       ├── Disneys_Strategic_Goals_ML_Use_Cases.pdf
+│       ├── DoorDash_Delivering_Convenience.pdf
+│       ├── Doordash_Presentation.pdf
+│       └── InsurCare_Database_Foundation.docx
+├── index.html                  # HTML entry, loads Sora + Source Serif 4 fonts, favicon link
 ├── vite.config.ts              # Vite config with React plugin
 ├── package.json
 └── tsconfig.app.json           # Strict TS: ES2022 target, react-jsx
@@ -105,6 +109,36 @@ All portfolio content is centralized in `src/data/siteData.ts`. To update text, 
 - `StatCard`, `SkillCard`, `CaseStudyCard` have Framer Motion hover effects
 - HomePage uses stagger animations for grid layouts
 - Header mobile drawer uses spring animations
+- Photography slideshow uses `AnimatePresence` for cross-fade transitions
+
+---
+
+## Favicon
+
+**Added:** March 10, 2026
+**File:** `public/favicon.svg`
+- Orange (`#e2954d`) bold serif "AR" on transparent background
+- Georgia font, SVG format for crisp rendering at any size
+- Referenced in `index.html` via `<link rel="icon" type="image/svg+xml" href="/favicon.svg" />`
+
+---
+
+## "Beyond Work" Photography Section
+
+**Added:** March 10, 2026
+**Unsplash profile:** https://unsplash.com/@theadithyar
+
+- Auto-rotating slideshow (6 photos, 4-second interval)
+- Left/right navigation arrows + dot indicators
+- Framer Motion slide transitions (`AnimatePresence`)
+- Photos stored in `public/assets/photography/` (resized to 800px wide, ~450KB total)
+- "View more on Unsplash" link to full profile
+- Located between Education and Contact sections on HomePage
+
+### To update photos:
+1. Resize new photos to 800px wide (use `sips --resampleWidth 800`)
+2. Save as `photo-N.jpg` in `public/assets/photography/`
+3. Update the `photos` array in `HomePage.tsx` if count changes
 
 ---
 
@@ -162,6 +196,7 @@ Vercel detects the push and redeploys automatically (~1-2 minutes).
 
 | Commit   | Date       | Description                                              |
 |----------|------------|----------------------------------------------------------|
+| `ab6cb90` | 2026-03-10 | Add favicon, photography slideshow, and project docs     |
 | `8d4811a` | 2026-03-10 | Update resume and switch contact form to Web3Forms       |
 | `4da52e8` | 2026-03-09 | Fix compiler issues (ESLint config, Footer, HomePage)    |
 | `a964900` | 2026-03-09 | Initial portfolio (all components, pages, styles, assets)|
@@ -180,6 +215,8 @@ Vercel detects the push and redeploys automatically (~1-2 minutes).
 | Add case study                | `src/data/siteData.ts` → `caseStudies`    |
 | Change contact email          | Update Web3Forms access key + `siteData.ts` → `siteMeta.email` |
 | Change profile photo          | Replace `public/assets/profile-photo.jpg` |
+| Change favicon                | Edit `public/favicon.svg` |
+| Update photography slideshow  | Replace/add images in `public/assets/photography/`, update `photos` array in `HomePage.tsx` |
 | Modify theme colors           | `src/global.css` → `:root` and `[data-theme="dark"]` |
 | Add a new page                | Create in `src/pages/`, add route in `App.tsx` |
 

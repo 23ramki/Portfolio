@@ -14,7 +14,13 @@
       "Bash(node -e \"const fm = require\\(''./node_modules/framer-motion/package.json''\\); console.log\\(''framer-motion peerDeps:'', JSON.stringify\\(fm.peerDependencies\\)\\); console.log\\(''version:'', fm.version\\)\")",
       "Bash(python3 -c \":*)",
       "Bash(pip3 install pypdf --quiet)",
-      "Bash(pip3 install pypdf --break-system-packages --quiet)"
+      "Bash(pip3 install pypdf --break-system-packages --quiet)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" log --oneline)",
+      "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" log --pretty=format:\"%h %s %an %ad\" --date=short)",
+      "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" log --name-status)",
+      "Bash(xargs -I {} basename {})",
+      "WebFetch(domain:unsplash.com)"
     ]
   }
 }

@@ -1,29 +1,4 @@
-/*
-  HEADER — with hamburger menu for mobile
-  =========================================
-  KEY CONCEPTS:
-
-  1. useState for UI state:
-     `menuOpen` tracks whether the mobile drawer is visible.
-     Clicking the hamburger toggles it; clicking a link closes it.
-
-  2. useEffect for side effects:
-     - Close menu when the route changes (user navigated)
-     - Lock body scroll when the drawer is open (prevents background scrolling)
-     The cleanup function (`return () => ...`) runs when the component unmounts
-     or before the next effect runs — it resets overflow.
-
-  3. AnimatePresence:
-     Framer Motion's AnimatePresence detects when children are removed from the
-     React tree and plays their `exit` animation before they're actually removed.
-     Without it, elements just disappear instantly.
-
-  4. Spring animation for drawer:
-     The drawer uses type: 'spring' for a natural, bouncy slide-in feel.
-     stiffness controls speed, damping controls bounciness.
-*/
-
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import ThemeToggle from './ThemeToggle'
@@ -43,6 +18,8 @@ export default function Header() {
   const location = useLocation()
   const isHome = location.pathname === '/'
   const [menuOpen, setMenuOpen] = useState(false)
+  const [hidden, setHidden] = useState(false)
+  const lastScrollY = useRef(0)
 
   // Close the mobile menu whenever the route changes
   useEffect(() => setMenuOpen(false), [location])
@@ -53,53 +30,67 @@ export default function Header() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
+  // Hide header on scroll down, show on scroll up
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY
+      if (currentY < 60) {
+        setHidden(false)
+      } else if (currentY > lastScrollY.current + 5) {
+        setHidden(true)
+      } else if (currentY < lastScrollY.current - 5) {
+        setHidden(false)
+      }
+      lastScrollY.current = currentY
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const close = () => setMenuOpen(false)
 
   return (
-    <header className={styles.header}>
-      <div className={`container ${styles.navWrap}`}>
-        {/* Brand / Logo */}
-        <Link className={styles.brand} to="/" onClick={close}>
-          ADITHYA RAMAKRISHNAN
-        </Link>
+    <>
+      <header className={`${styles.header} ${hidden && !menuOpen ? styles.headerHidden : ''}`}>
+        <div className={`container ${styles.navWrap}`}>
+          <Link className={styles.brand} to="/" onClick={close}>
+            ADITHYA RAMAKRISHNAN
+          </Link>
 
-        {/* Desktop navigation — hidden on mobile via CSS */}
-        <nav className={styles.nav} aria-label="Primary Navigation">
-          {isHome ? (
-            HOME_LINKS.map((l) => (
-              <a key={l.href} href={l.href}>{l.label}</a>
-            ))
-          ) : (
-            <>
-              <Link to="/">Home</Link>
-              <Link to="/#case-studies">Case Studies</Link>
-              <Link to="/#contact">Contact</Link>
-            </>
-          )}
-        </nav>
+          <nav className={styles.nav} aria-label="Primary Navigation">
+            {isHome ? (
+              HOME_LINKS.map((l) => (
+                <a key={l.href} href={l.href}>{l.label}</a>
+              ))
+            ) : (
+              <>
+                <Link to="/">Home</Link>
+                <Link to="/#case-studies">Case Studies</Link>
+                <Link to="/#contact">Contact</Link>
+              </>
+            )}
+          </nav>
 
-        {/* Right-side controls */}
-        <div className={styles.controls}>
-          <ThemeToggle />
-          {/* Hamburger button — visible only on mobile */}
-          <button
-            className={styles.hamburger}
-            onClick={() => setMenuOpen((v) => !v)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-          >
-            <span className={`${styles.bar} ${menuOpen ? styles.barOpen1 : ''}`} />
-            <span className={`${styles.bar} ${menuOpen ? styles.barOpen2 : ''}`} />
-            <span className={`${styles.bar} ${menuOpen ? styles.barOpen3 : ''}`} />
-          </button>
+          <div className={styles.controls}>
+            <ThemeToggle />
+            <button
+              className={styles.hamburger}
+              onClick={() => setMenuOpen((v) => !v)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+            >
+              <span className={`${styles.bar} ${menuOpen ? styles.barOpen1 : ''}`} />
+              <span className={`${styles.bar} ${menuOpen ? styles.barOpen2 : ''}`} />
+              <span className={`${styles.bar} ${menuOpen ? styles.barOpen3 : ''}`} />
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
-      {/* Mobile drawer + backdrop — animated in/out with AnimatePresence */}
+      {/* Drawer rendered OUTSIDE header to avoid backdrop-filter containing block issues */}
       <AnimatePresence>
         {menuOpen && (
           <>
-            {/* Semi-transparent backdrop */}
             <motion.div
               className={styles.backdrop}
               initial={{ opacity: 0 }}
@@ -109,7 +100,6 @@ export default function Header() {
               onClick={close}
             />
 
-            {/* Slide-in nav drawer */}
             <motion.nav
               className={styles.drawer}
               aria-label="Mobile Navigation"
@@ -133,6 +123,6 @@ export default function Header() {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   )
 }
