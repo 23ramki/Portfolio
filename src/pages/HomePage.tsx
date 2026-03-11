@@ -17,7 +17,8 @@
      SkillCard, etc.) for a lift effect on mouse-over.
 */
 
-import { motion } from 'framer-motion'
+import { useState, useEffect, useCallback } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   about,
   caseStudies,
@@ -56,7 +57,31 @@ const staggerContainer = {
 //   visible: { opacity: 1, y: 0, transition: { duration: 0.44 } },
 // }
 
+const photos = [
+  '/assets/photography/photo-1.jpg',
+  '/assets/photography/photo-2.jpg',
+  '/assets/photography/photo-3.jpg',
+  '/assets/photography/photo-4.jpg',
+  '/assets/photography/photo-5.jpg',
+  '/assets/photography/photo-6.jpg',
+]
+
 export default function HomePage() {
+  const [photoIndex, setPhotoIndex] = useState(0)
+
+  const nextPhoto = useCallback(() => {
+    setPhotoIndex((prev) => (prev + 1) % photos.length)
+  }, [])
+
+  const prevPhoto = useCallback(() => {
+    setPhotoIndex((prev) => (prev - 1 + photos.length) % photos.length)
+  }, [])
+
+  // Auto-advance every 4 seconds
+  useEffect(() => {
+    const timer = setInterval(nextPhoto, 4000)
+    return () => clearInterval(timer)
+  }, [nextPhoto])
 
   return (
     <main>
@@ -272,6 +297,56 @@ export default function HomePage() {
               ))}
             </article>
 
+          </div>
+        </AnimatedSection>
+      </section>
+
+      {/* ─── Beyond Work ─── */}
+      <section id="beyond-work" className={`${styles.section} container`} style={{ scrollMarginTop: '80px' }}>
+        <AnimatedSection>
+          <SectionHeading
+            title="Beyond Work"
+            subtitle="When I'm not working with data, I'm out capturing the world through my lens."
+          />
+        </AnimatedSection>
+        <AnimatedSection delay={0.1}>
+          <div className={styles.photoShowcase}>
+            <div className={styles.slideshow}>
+              <button className={styles.slideBtn} onClick={prevPhoto} aria-label="Previous photo">&lsaquo;</button>
+              <div className={styles.slideWindow}>
+                <AnimatePresence mode="wait">
+                  <motion.img
+                    key={photoIndex}
+                    src={photos[photoIndex]}
+                    alt={`Photography by Adithya — ${photoIndex + 1} of ${photos.length}`}
+                    className={styles.slideImage}
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -40 }}
+                    transition={{ duration: 0.35 }}
+                  />
+                </AnimatePresence>
+              </div>
+              <button className={styles.slideBtn} onClick={nextPhoto} aria-label="Next photo">&rsaquo;</button>
+            </div>
+            <div className={styles.slideDots}>
+              {photos.map((_, i) => (
+                <button
+                  key={i}
+                  className={`${styles.dot} ${i === photoIndex ? styles.dotActive : ''}`}
+                  onClick={() => setPhotoIndex(i)}
+                  aria-label={`Go to photo ${i + 1}`}
+                />
+              ))}
+            </div>
+            <a
+              className={styles.unsplashLink}
+              href="https://unsplash.com/@theadithyar"
+              target="_blank"
+              rel="noreferrer"
+            >
+              View more on Unsplash &rarr;
+            </a>
           </div>
         </AnimatedSection>
       </section>

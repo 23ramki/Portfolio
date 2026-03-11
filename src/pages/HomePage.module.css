@@ -284,6 +284,100 @@
   font-size: 0.94rem;
 }
 
+/* ─── Beyond Work (Photography Slideshow) ─── */
+.photoShowcase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.slideshow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 700px;
+}
+
+.slideWindow {
+  flex: 1;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  aspect-ratio: 4 / 3;
+  position: relative;
+}
+
+.slideImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  inset: 0;
+}
+
+.slideBtn {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--text);
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.slideBtn:hover {
+  background: var(--primary);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.slideDots {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid var(--muted);
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+
+.dotActive {
+  background: var(--primary);
+  border-color: var(--primary);
+}
+
+.unsplashLink {
+  display: inline-block;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.unsplashLink:hover {
+  color: var(--primary-strong);
+  text-decoration: underline;
+}
+
 /* ─── Contact ─── */
 .contact {
   margin-bottom: 3.5rem;
@@ -332,6 +426,7 @@
   .eduGrid {
     grid-template-columns: 1fr;
   }
+
 }
 
 /* ─── Responsive: mobile ─── */
