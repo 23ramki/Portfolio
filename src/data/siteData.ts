@@ -28,7 +28,7 @@ export const profilePhoto: string = '/assets/profile-photo.jpg'
 // ─── Hero ─────────────────────────────────────────────────
 export const hero: HeroContent = {
   eyebrow: 'Business Analyst Portfolio',
-  title: "I build dashboards that drive revenue. I'm Adithya Ramakrishnan.",
+  title: "I'm Adithya Ramakrishnan. I turn data into decisions that drive growth.",
   summary:
     '3+ years designing KPI dashboards for B2B recurring revenue operations. I make data credible, decisions faster, and stakeholder reviews sharper — across 70+ locations.',
 }
@@ -44,9 +44,9 @@ export const about: AboutContent = {
 
 // ─── Stats ────────────────────────────────────────────────
 export const stats: Stat[] = [
-  { value: '7', label: 'End-to-End Case Studies' },
-  { value: '4', label: 'Industry Certifications' },
-  { value: '200%+', label: 'Registration Growth' },
+  { value: '35%', label: 'Client Base Increase' },
+  { value: '70+', label: 'Locations Managed' },
+  { value: '25%', label: 'Manual Data Entry Reduced' },
 ]
 
 // ─── Skills ───────────────────────────────────────────────

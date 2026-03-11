@@ -3,23 +3,23 @@
   background: var(--btn-secondary-bg);
   color: var(--text);
   border-radius: 50%;
-  width: 2.35rem;
-  height: 2.35rem;
+  width: 2.2rem;
+  height: 2.2rem;
   padding: 0;
   font-family: inherit;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   position: relative;
   overflow: hidden;
-  transition: transform 160ms ease, background-color 160ms ease;
+  transition: all 200ms ease;
 }
 
 .toggle:hover {
-  transform: translateY(-2px);
+  border-color: var(--muted);
 }
 
 .toggle:focus-visible {
@@ -35,14 +35,14 @@
   transition: opacity 180ms ease, transform 180ms ease;
 }
 
-/* Show moon icon in light mode (click to go dark) */
+/* Show moon icon in light mode */
 :root:not([data-theme="dark"]) .moon,
 [data-theme="light"] .moon {
   opacity: 1;
   transform: scale(1);
 }
 
-/* Show sun icon in dark mode (click to go light) */
+/* Show sun icon in dark mode */
 [data-theme="dark"] .sun {
   opacity: 1;
   transform: scale(1);

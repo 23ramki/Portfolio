@@ -177,10 +177,11 @@ export default function HomePage() {
                 className={styles.title}
                 style={{ perspective: 600 }}
               >
-                <SplitText text="I build dashboards that drive revenue." delay={0.2} />
-                <br />
+                <div>
+                  <SplitText text="I turn data into decisions that drive growth." delay={0.2} />
+                </div>
                 <span>
-                  <SplitText text={`I'm ${siteMeta.name}.`} className={styles.titleAccent} delay={0.7} />
+                  <SplitText text={`I'm ${siteMeta.name}.`} delay={0.7} />
                 </span>
               </motion.h1>
 

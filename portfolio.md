@@ -50,10 +50,19 @@
 | Update photos | `public/assets/photography/`, update `photos` array in `HomePage.tsx` |
 | Change contact email | Update Web3Forms access key at web3forms.com |
 
+## Content Decisions
+
+- **Hero greeting:** "I build dashboards that drive revenue. I'm Adithya Ramakrishnan."
+- **Stats:** 7 End-to-End Case Studies · 4 Industry Certifications · 200%+ Registration Growth (deliberately distinct from experience bullets)
+- **Experience bullets:** Sourced from LinkedIn for consistency; Orange Care trimmed to 3 strongest
+- **Beyond Work:** Photography slideshow — left as-is by design
+
 ## Git History
 
 | Commit | Description |
 |--------|-------------|
+| `809e728` | Revamp stats, sharpen experience bullets (LinkedIn-sourced) |
+| `cbb2ecf` | Slim portfolio.md to essentials |
 | `57aed8a` | 3D tilt hovers, content sharpening, About width fix |
 | `1c5b35a` | Animations, header auto-hide, scroll effects, section dividers |
 | `ab6cb90` | Favicon, photography slideshow, project docs |

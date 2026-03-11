@@ -1,43 +1,43 @@
 .item {
   position: relative;
-  margin-bottom: 1.35rem;
-  padding-left: 0.6rem;
+  margin-bottom: 1.5rem;
+  padding-left: 0.75rem;
 }
 
 .item:last-child {
   margin-bottom: 0;
 }
 
-/* The orange dot on the timeline */
+/* Timeline dot */
 .dot {
-  width: 11px;
-  height: 11px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--primary);
   position: absolute;
-  left: -1.63rem;
-  top: 0.43rem;
-  box-shadow: 0 0 0 4px rgba(226, 149, 77, 0.16);
+  left: -1.65rem;
+  top: 0.48rem;
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.12);
 }
 
 .role {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   margin-bottom: 0.15rem;
 }
 
 .timeline {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   margin: 0.2rem 0 0.5rem;
 }
 
-/* All experience points — uniform size, spacing, and style */
 .points {
   margin: 0.4rem 0 0;
   padding-left: 1.1rem;
   color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.68;
+  font-size: 0.93rem;
+  line-height: 1.65;
 }
 
 .points li {
