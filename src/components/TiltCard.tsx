@@ -77,6 +77,7 @@ export default function TiltCard({
       style={{
         perspective: 600,
         transformStyle: 'preserve-3d',
+        borderRadius: 'var(--radius)',
         rotateX: sRotateX,
         rotateY: sRotateY,
         scale: sScale,
