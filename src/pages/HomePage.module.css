@@ -292,6 +292,134 @@
   font-size: 0.94rem;
 }
 
+/* ─── Certification badge cards ─── */
+.certGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.certCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.certBadgeLink {
+  flex-shrink: 0;
+  display: block;
+  border-radius: 10px;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.certBadgeLink:hover {
+  opacity: 0.85;
+  transform: scale(1.04);
+}
+
+.certBadgeImg {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  object-fit: contain;
+  display: block;
+  flex-shrink: 0;
+  background: transparent;
+}
+
+.certBadgePlaceholder {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  background: var(--stat-bg);
+  border: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.certBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.certName {
+  font-weight: 600;
+  font-size: 0.88rem;
+  color: var(--text);
+  margin: 0 0 0.12rem;
+  line-height: 1.35;
+}
+
+.certIssuer {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin: 0 0 0.35rem;
+}
+
+.certLinks {
+  display: flex;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.certLink {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  transition: opacity 150ms ease;
+}
+
+.certLink:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+.certDot {
+  color: var(--line);
+  font-size: 0.78rem;
+}
+
+.certValid {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.trailblazerCallout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 8px;
+  background: var(--stat-bg);
+  border: 1px solid var(--line);
+  margin-bottom: 1.1rem;
+  text-decoration: none;
+  transition: border-color 150ms ease;
+}
+
+.trailblazerCallout:hover {
+  border-color: var(--primary);
+}
+
+.trailblazerText {
+  flex: 1;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.trailblazerSub {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.trailblazerArrow {
+  font-size: 0.8rem;
+  color: var(--primary);
+}
+
 /* ─── Beyond Work (Photography Slideshow) ─── */
 .photoShowcase {
   display: flex;
@@ -397,6 +525,7 @@
     text-align: center;
     justify-items: center;
     padding-top: 4.5rem;
+    gap: 1.75rem;
   }
 
   .heroImageWrap {
@@ -441,16 +570,17 @@
 @media (max-width: 600px) {
   .hero {
     padding-top: 3rem;
+    gap: 1.25rem;
   }
 
   .heroImageWrap {
-    width: 150px;
-    height: 150px;
+    width: 190px;
+    height: 190px;
   }
 
   .heroPhoto {
-    width: 150px;
-    height: 150px;
+    width: 190px;
+    height: 190px;
   }
 
   .statsRow {

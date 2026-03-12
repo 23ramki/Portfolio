@@ -95,8 +95,19 @@ export interface EducationEntry {
   coursework?: string[] // Relevant courses to display as pills
 }
 
+// ─── Individual certification ─────────────────────────────
+export interface Certification {
+  name: string           // Certification title
+  issuer: string         // Issuing organization
+  badgeUrl?: string      // Badge image URL
+  verifyUrl?: string     // External credential verification link
+  docUrl?: string        // Internal PDF document path
+  trailblazerUrl?: string // Salesforce Trailblazer profile link
+  validUntil?: string    // Expiry label, e.g. "Jun 2027"
+}
+
 // ─── Education + certifications combined ──────────────────
 export interface Education {
   studies: EducationEntry[]
-  certifications: string[]
+  certifications: Certification[]
 }

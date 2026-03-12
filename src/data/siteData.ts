@@ -14,6 +14,7 @@ import type {
   CaseStudy,
   ProjectDocument,
   Education,
+  Certification,
 } from '../types/portfolio'
 
 // ─── Personal info ────────────────────────────────────────
@@ -87,7 +88,6 @@ export const experiences: Experience[] = [
     bullets: [
       'Designed Tableau dashboards translating operational and CRM data into executive-ready narratives tied to revenue, margin, and SLA performance.',
       'Analyzed 30-day recurring billing cycles, technician deployment, and material consumption to improve cost visibility and margin control (contributed to 12% reduction in labor cost variance).',
-      'Standardized KPI definitions across branches to improve reporting trust and decision alignment.',
     ],
   },
   {
@@ -365,9 +365,33 @@ export const education: Education = {
     },
   ],
   certifications: [
-    'Salesforce Certified Platform Administrator',
-    'Salesforce Certified Analytics Professional',
-    'Snowflake SnowPro Core',
-    'Power BI Data Modeling (DAX)',
-  ],
+    {
+      name: 'Salesforce Certified Platform Administrator',
+      issuer: 'Salesforce',
+      badgeUrl: '/assets/salesforce-admin-badge.png',
+      docUrl: '/assets/Salesforce_PlatformAdministrator_Cert.pdf',
+      trailblazerUrl: 'https://www.salesforce.com/trailblazer/ladrnd2kz9mkex2uwv',
+    },
+    {
+      name: 'SnowPro Associate: Platform Certification',
+      issuer: 'Snowflake',
+      badgeUrl: '/assets/snowpro-associate-badge.png',
+      verifyUrl: 'https://www.credential.net/d8ddca5c-c4d3-43f6-9b91-f6d0cbe8bfb8',
+      validUntil: 'Valid until Jun 2027',
+    },
+    {
+      name: 'Graduate Certificate in Business Decision Analytics',
+      issuer: 'University of Texas at Dallas',
+      badgeUrl: '/assets/utd-logo.png',
+      docUrl: '/assets/UTD_GradCert_BusinessDecisionAnalytics.pdf',
+      validUntil: 'Awarded May 2025',
+    },
+    {
+      name: 'Graduate Certificate in Analytics for Managers',
+      issuer: 'University of Texas at Dallas',
+      badgeUrl: '/assets/utd-logo.png',
+      docUrl: '/assets/UTD_GradCert_AnalyticsForManagers.pdf',
+      validUntil: 'Awarded May 2025',
+    },
+  ] as Certification[],
 }

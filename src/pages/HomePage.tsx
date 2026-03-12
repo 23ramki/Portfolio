@@ -413,9 +413,71 @@ export default function HomePage() {
               <AnimatedSection delay={0.15} direction="right" distance={40} scale={0.97}>
                 <article className={styles.card}>
                   <h3>Certifications</h3>
-                  {education.certifications.map((cert) => (
-                    <p key={cert} className={styles.certItem}>✓ {cert}</p>
-                  ))}
+                  {/* Salesforce Trailblazer profile callout */}
+                  <a
+                    className={styles.trailblazerCallout}
+                    href="https://www.salesforce.com/trailblazer/ladrnd2kz9mkex2uwv"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span className={styles.trailblazerText}>
+                      Salesforce Trailblazer
+                      <span className={styles.trailblazerSub}> · 29 badges</span>
+                    </span>
+                    <span className={styles.trailblazerArrow}>→</span>
+                  </a>
+                  <div className={styles.certGrid}>
+                    {education.certifications.map((cert) => {
+                      const badgeLink = cert.verifyUrl || cert.docUrl || cert.trailblazerUrl
+                      return (
+                        <div key={cert.name} className={styles.certCard}>
+                          {/* Badge image — clicking opens the cert/verify URL */}
+                          {cert.badgeUrl ? (
+                            badgeLink ? (
+                              <a href={badgeLink} target="_blank" rel="noreferrer" className={styles.certBadgeLink}>
+                                <img
+                                  className={styles.certBadgeImg}
+                                  src={cert.badgeUrl}
+                                  alt={`${cert.name} badge`}
+                                />
+                              </a>
+                            ) : (
+                              <img
+                                className={styles.certBadgeImg}
+                                src={cert.badgeUrl}
+                                alt={`${cert.name} badge`}
+                              />
+                            )
+                          ) : (
+                            <div className={styles.certBadgePlaceholder} />
+                          )}
+                          <div className={styles.certBody}>
+                            <p className={styles.certName}>{cert.name}</p>
+                            <p className={styles.certIssuer}>{cert.issuer}</p>
+                            <div className={styles.certLinks}>
+                              {cert.verifyUrl && (
+                                <a className={styles.certLink} href={cert.verifyUrl} target="_blank" rel="noreferrer">
+                                  Verify ↗
+                                </a>
+                              )}
+                              {cert.verifyUrl && cert.docUrl && <span className={styles.certDot}>·</span>}
+                              {cert.docUrl && (
+                                <a className={styles.certLink} href={cert.docUrl} target="_blank" rel="noreferrer">
+                                  View Cert ↗
+                                </a>
+                              )}
+                              {cert.validUntil && (
+                                <>
+                                  {(cert.verifyUrl || cert.docUrl) && <span className={styles.certDot}>·</span>}
+                                  <span className={styles.certValid}>{cert.validUntil}</span>
+                                </>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </article>
               </AnimatedSection>
             </div>
