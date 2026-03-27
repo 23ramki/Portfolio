@@ -115,21 +115,23 @@ export const caseStudies: CaseStudy[] = [
     slug: 'telco-customer-churn',
     title: 'Telco Customer Churn Analysis',
     summary:
-      'Analyzed a 7,000+ customer dataset using Python and SQL to identify key drivers of a 26.5% overall churn rate, and built an interactive Tableau dashboard with a quadrant risk matrix.',
+      'Analyzed a 7,000+ customer dataset using Python and SQL to uncover a 26.5% churn rate, then built an interactive Tableau dashboard with a quadrant risk matrix and dynamic metric swapper for executive-ready exploration.',
     tags: ['Python', 'SQL', 'Tableau', 'Feature Engineering'],
     highlight: 'Month-to-month contracts: 42.7% churn; fiber optic: 41.9% churn.',
     problem:
-      'Telecom providers need to identify high-risk customer segments to reduce churn and prioritize retention strategies.',
+      'With more than 1 in 4 customers churning (26.5%), the telecom provider needed to pinpoint which behavioral and contractual factors were driving attrition — and surface actionable retention levers like contract structure, service tier, and tenure thresholds that the business could target immediately.',
     approach: [
-      'Analyzed a 7,000+ customer dataset using Python and SQL to identify key drivers of a 26.5% overall churn rate.',
-      'Engineered features using pandas to reveal that month-to-month contracts and fiber optic services hold the highest flight risk (42.7% and 41.9% churn, respectively).',
-      'Designed an interactive Tableau dashboard featuring a dynamic metric swapper (parameter actions) and a customer-level quadrant risk matrix.',
-      'Accelerated exploratory data analysis and data profiling workflows by integrating Claude Code, optimizing execution time while maintaining strategic oversight.',
+      'Cleaned and profiled a 7,043-customer dataset (Python/pandas), engineering features such as tenure buckets and monthly-charges brackets to expose non-obvious churn segments.',
+      'Ran structured analytical queries in SQL (SQLite) to quantify churn rates across contract type, internet service, tenure cohorts, and charge tiers.',
+      'Built a Churn Risk Matrix — a customer-level scatterplot (tenure vs. MonthlyCharges) with quadrant analysis overlaid to isolate the high-risk upper-left cohort: high-paying, low-tenure customers with the greatest combined revenue risk.',
+      'Designed a Dynamic Metric Swapper using Tableau Parameter Actions, consolidating five categorical churn-rate views into a single chart panel for a compact, executive-ready layout.',
+      'Accelerated exploratory data analysis and data profiling workflows by integrating Claude Code, maintaining strategic oversight while optimizing execution time.',
     ],
     results: [
-      'Identified month-to-month contracts (42.7%) and fiber optic services (41.9%) as highest churn segments.',
-      'Built a quadrant risk matrix enabling customer-level prioritization for retention campaigns.',
-      'Created a dynamic metric swapper using Tableau parameter actions for flexible executive exploration.',
+      'Month-to-month contracts drive 42.7% churn vs. 2.8% for two-year contracts — migrating at-risk customers to longer terms is the single highest-leverage retention intervention.',
+      'Fiber optic customers churn at 41.9%, nearly 2.5x the DSL rate (19.0%), signaling a retention problem in the premium service tier that pricing or quality changes should address.',
+      'The 24-month tenure mark is a critical survival threshold — churn among customers with ≤6 months is 52.9%, falling to 14.0% beyond 24 months, making early-lifecycle engagement the highest-ROI retention spend.',
+      'Recommended targeted contract-migration campaigns for month-to-month fiber optic customers approaching their 6-month mark, and a price-value audit of the high monthly-charge bracket.',
     ],
     documents: [],
     liveLinks: [
@@ -318,7 +320,7 @@ export const projectDocuments: ProjectDocument[] = [
   {
     title: 'Telco Customer Churn Analysis',
     description:
-      'Python and SQL analysis of 7,000+ customer records identifying churn drivers, with an interactive Tableau dashboard featuring quadrant risk matrix.',
+      'End-to-end churn analysis (Python, SQL, Tableau) uncovering a 26.5% attrition rate, with a quadrant risk matrix and dynamic metric swapper for executive-ready exploration.',
     links: [
       { label: 'Tableau Dashboard', href: 'https://public.tableau.com/views/Telco_17745732908030/QuadrantAnalysis?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link' },
       { label: 'GitHub Repository', href: 'https://github.com/23ramki/telco-churn/tree/main' },
