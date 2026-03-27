@@ -112,6 +112,33 @@ export const experiences: Experience[] = [
 // ─── Case Studies ─────────────────────────────────────────
 export const caseStudies: CaseStudy[] = [
   {
+    slug: 'telco-customer-churn',
+    title: 'Telco Customer Churn Analysis',
+    summary:
+      'Analyzed a 7,000+ customer dataset using Python and SQL to identify key drivers of a 26.5% overall churn rate, and built an interactive Tableau dashboard with a quadrant risk matrix.',
+    tags: ['Python', 'SQL', 'Tableau', 'Feature Engineering'],
+    highlight: 'Month-to-month contracts: 42.7% churn; fiber optic: 41.9% churn.',
+    problem:
+      'Telecom providers need to identify high-risk customer segments to reduce churn and prioritize retention strategies.',
+    approach: [
+      'Analyzed a 7,000+ customer dataset using Python and SQL to identify key drivers of a 26.5% overall churn rate.',
+      'Engineered features using pandas to reveal that month-to-month contracts and fiber optic services hold the highest flight risk (42.7% and 41.9% churn, respectively).',
+      'Designed an interactive Tableau dashboard featuring a dynamic metric swapper (parameter actions) and a customer-level quadrant risk matrix.',
+      'Accelerated exploratory data analysis and data profiling workflows by integrating Claude Code, optimizing execution time while maintaining strategic oversight.',
+    ],
+    results: [
+      'Identified month-to-month contracts (42.7%) and fiber optic services (41.9%) as highest churn segments.',
+      'Built a quadrant risk matrix enabling customer-level prioritization for retention campaigns.',
+      'Created a dynamic metric swapper using Tableau parameter actions for flexible executive exploration.',
+    ],
+    documents: [],
+    liveLinks: [
+      { label: 'Tableau Dashboard', href: 'https://public.tableau.com/views/Telco_17745732908030/QuadrantAnalysis?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link' },
+      { label: 'GitHub Repository', href: 'https://github.com/23ramki/telco-churn/tree/main' },
+    ],
+    contactSubject: 'Telco Customer Churn Analysis Discussion',
+  },
+  {
     slug: 'loan-repayment-modeling',
     title: 'Loan Repayment Risk Modeling',
     summary:
@@ -288,6 +315,15 @@ export const caseStudies: CaseStudy[] = [
 
 // ─── Project Documents ────────────────────────────────────
 export const projectDocuments: ProjectDocument[] = [
+  {
+    title: 'Telco Customer Churn Analysis',
+    description:
+      'Python and SQL analysis of 7,000+ customer records identifying churn drivers, with an interactive Tableau dashboard featuring quadrant risk matrix.',
+    links: [
+      { label: 'Tableau Dashboard', href: 'https://public.tableau.com/views/Telco_17745732908030/QuadrantAnalysis?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link' },
+      { label: 'GitHub Repository', href: 'https://github.com/23ramki/telco-churn/tree/main' },
+    ],
+  },
   {
     title: 'Loan Repayment Modeling',
     description:

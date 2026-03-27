@@ -116,6 +116,30 @@ export default function CaseStudyPage() {
         </>
       )}
 
+      {study.liveLinks && study.liveLinks.length > 0 && (
+        <>
+          <hr className="section-divider" style={{ margin: '0.5rem 0' }} />
+          <AnimatedSection direction="up" distance={40} scale={0.98} once>
+            <section className={styles.section}>
+              <h2>Explore</h2>
+              <div className={styles.docLinks}>
+                {study.liveLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={styles.docLink}
+                  >
+                    {link.label} ↗
+                  </a>
+                ))}
+              </div>
+            </section>
+          </AnimatedSection>
+        </>
+      )}
+
       <hr className="section-divider" style={{ margin: '1rem 0' }} />
 
       <AnimatedSection direction="up" distance={30} scale={0.99} once>

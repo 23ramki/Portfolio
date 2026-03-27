@@ -75,6 +75,7 @@ export interface CaseStudy {
   approach: string[]       // Array of approach steps
   results: string[]        // Array of result points
   documents: DocumentLink[]  // Nested type! An array of DocumentLink objects
+  liveLinks?: DocumentLink[] // Optional external links (Tableau, GitHub, etc.)
   contactSubject: string
 }
 
