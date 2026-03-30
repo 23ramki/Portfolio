@@ -141,6 +141,35 @@ export const caseStudies: CaseStudy[] = [
     contactSubject: 'Telco Customer Churn Analysis Discussion',
   },
   {
+    slug: 'telco-churn-prediction',
+    title: 'Telco Customer Churn Prediction — ML Pipeline & Dashboard',
+    summary:
+      'Built an end-to-end ML pipeline that predicts customer churn using a hyperparameter-tuned XGBoost model with SHAP explainability, served through a live Streamlit dashboard for real-time predictions.',
+    tags: ['Python', 'XGBoost', 'SHAP', 'Streamlit', 'scikit-learn'],
+    highlight: '78% churn recall — contract type alone accounts for 33% of model gain.',
+    problem:
+      'Customer churn is one of the most costly challenges in telecom — acquiring a new customer costs 5-10x more than retaining one. The business needed a predictive model that could identify at-risk customers before cancellation, with explanations clear enough for customer success teams to act on.',
+    approach: [
+      'Cleaned and encoded a 7,043-customer dataset into a 29-feature model-ready matrix, applying one-hot encoding with multicollinearity removal and StandardScaler on continuous features (fit on train only to prevent leakage).',
+      'Trained a baseline XGBoost classifier with class-imbalance correction (scale_pos_weight ≈ 2.77) on a stratified 80/20 split preserving the 26.5% churn rate.',
+      'Tuned hyperparameters via RandomizedSearchCV (30 candidates × 3-fold CV = 90 fits), optimizing for F1 score to balance precision and recall on the minority class.',
+      'Generated model-level explainability using SHAP TreeExplainer, producing beeswarm plots that show both global feature importance and directional impact on churn probability.',
+      'Deployed an interactive Streamlit dashboard where users configure a customer profile via sidebar controls and receive instant churn probability, risk level, and a breakdown chart — no button press required.',
+    ],
+    results: [
+      'Final model catches 78% of actual churners (recall), giving retention teams meaningful lead time to intervene with targeted offers before cancellation.',
+      'Contract type is the single strongest predictor — month-to-month contracts drive the highest churn, making contract migration the top-ROI retention lever.',
+      'Fiber optic internet ranks as the second most important feature (14.1% of model gain), signaling a satisfaction gap among premium-tier customers paying higher charges.',
+      'Security and support add-ons (OnlineSecurity, TechSupport) are negatively correlated with churn, suggesting bundling these services could improve retention in high-risk segments.',
+    ],
+    documents: [],
+    liveLinks: [
+      { label: 'Streamlit App', href: 'https://telco-churn-predictionn-avveaen4nsz44zcyinqgsa.streamlit.app/' },
+      { label: 'GitHub Repository', href: 'https://github.com/23ramki/telco-churn-prediction' },
+    ],
+    contactSubject: 'Telco Churn Prediction ML Pipeline Discussion',
+  },
+  {
     slug: 'loan-repayment-modeling',
     title: 'Loan Repayment Risk Modeling',
     summary:
@@ -324,6 +353,15 @@ export const projectDocuments: ProjectDocument[] = [
     links: [
       { label: 'Tableau Dashboard', href: 'https://public.tableau.com/views/Telco_17745732908030/QuadrantAnalysis?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link' },
       { label: 'GitHub Repository', href: 'https://github.com/23ramki/telco-churn/tree/main' },
+    ],
+  },
+  {
+    title: 'Telco Churn Prediction — ML Pipeline',
+    description:
+      'End-to-end XGBoost pipeline with SHAP explainability and a live Streamlit dashboard for real-time customer churn prediction.',
+    links: [
+      { label: 'Streamlit App', href: 'https://telco-churn-predictionn-avveaen4nsz44zcyinqgsa.streamlit.app/' },
+      { label: 'GitHub Repository', href: 'https://github.com/23ramki/telco-churn-prediction' },
     ],
   },
   {
