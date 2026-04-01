@@ -11,6 +11,7 @@
 
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
+import { Analytics } from '@vercel/analytics/react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
@@ -36,6 +37,7 @@ function App() {
       </AnimatePresence>
       <Footer />
       <BackToTop />
+      <Analytics />
     </>
   )
 }
