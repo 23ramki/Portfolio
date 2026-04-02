@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from 'react'
+import { useState, useCallback, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion'
 import {
   about,
@@ -20,9 +20,11 @@ import CaseStudyCard from '../components/CaseStudyCard'
 import DocumentCard from '../components/DocumentCard'
 import ContactForm from '../components/ContactForm'
 import AnimatedSection from '../components/AnimatedSection'
+import SkillMarquee from '../components/SkillMarquee'
 import styles from './HomePage.module.css'
 
-const smooth = [0.16, 1, 0.3, 1] as const
+// Norris-inspired easing: fast start, slow finish
+const smooth = [0.65, 0.05, 0, 1] as const
 
 // Stagger container for grid layouts
 const staggerContainer = {
@@ -34,12 +36,12 @@ const staggerContainer = {
 }
 
 const staggerItem = {
-  hidden: { opacity: 0, y: 40, scale: 0.97 },
+  hidden: { opacity: 0, y: 40, scale: 0.95 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.8, ease: smooth },
+    transition: { duration: 0.75, ease: smooth },
   },
 }
 
@@ -70,12 +72,13 @@ function SplitText({ text, className, delay = 0 }: { text: string; className?: s
           key={i}
           style={{ display: 'inline-block', marginRight: '0.3em' }}
           variants={{
-            hidden: { opacity: 0, y: 30, rotateX: -40 },
+            hidden: { opacity: 0, y: 50, rotateX: -60, filter: 'blur(8px)' },
             visible: {
               opacity: 1,
               y: 0,
               rotateX: 0,
-              transition: { duration: 0.6, ease: smooth },
+              filter: 'blur(0px)',
+              transition: { duration: 0.7, ease: smooth },
             },
           }}
         >
@@ -88,14 +91,6 @@ function SplitText({ text, className, delay = 0 }: { text: string; className?: s
 
 export default function HomePage() {
   const [photoIndex, setPhotoIndex] = useState(0)
-  const [entered, setEntered] = useState(false)
-
-  // Entrance animation state
-  useEffect(() => {
-    const timer = setTimeout(() => setEntered(true), 100)
-    return () => clearTimeout(timer)
-  }, [])
-
   const nextPhoto = useCallback(() => {
     setPhotoIndex((prev) => (prev + 1) % photos.length)
   }, [])
@@ -163,8 +158,6 @@ export default function HomePage() {
   }, [rotateX, rotateY, photoScale, shadowX, shadowY, shadowBlur, shadowOp])
 
   return (
-    <AnimatePresence>
-      {entered && (
         <motion.main
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -290,6 +283,7 @@ export default function HomePage() {
             <AnimatedSection direction="up" distance={60} scale={0.97}>
               <SectionHeading title="Skills" />
             </AnimatedSection>
+            <SkillMarquee />
             <motion.div
               className={styles.skillsGrid}
               variants={staggerContainer}
@@ -493,7 +487,7 @@ export default function HomePage() {
                 subtitle="When I'm not working with data, I'm out capturing the world through my lens."
               />
             </AnimatedSection>
-            <AnimatedSection delay={0.1} direction="none" scale={0.95} duration={1.1}>
+            <AnimatedSection delay={0.1} direction="none" scale={0.95} duration={1.1} clipReveal>
               <div className={styles.photoShowcase}>
                 <div className={styles.slideshow}>
                   <button className={styles.slideBtn} onClick={prevPhoto} aria-label="Previous photo">&lsaquo;</button>
@@ -556,7 +550,5 @@ export default function HomePage() {
             </AnimatedSection>
           </section>
         </motion.main>
-      )}
-    </AnimatePresence>
   )
 }

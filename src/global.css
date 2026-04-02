@@ -1,62 +1,69 @@
 /*
-  DESIGN TOKENS — Apple-inspired
-  ===============================
-  Clean, monochrome palette with blue accent.
-  Inter font throughout (SF Pro equivalent).
+  DESIGN TOKENS — Norris-inspired
+  ================================
+  High-contrast lime accent on dark palette.
+  Space Grotesk for display, Inter for body.
 */
 
 :root {
-  /* Flat background — no gradient */
-  --bg-grad: #fbfbfd;
+  /* Background */
+  --bg-grad: #f0ece2;
 
   /* Surface and text */
   --surface: #ffffff;
-  --text: #1d1d1f;
-  --muted: #86868b;
-  --line: #d2d2d7;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --line: #e0e0e0;
 
-  /* Brand — Apple blue */
-  --primary: #0071e3;
-  --primary-strong: #0077ed;
-  --accent: #0071e3;
+  /* Brand — Deep olive for light mode contrast */
+  --primary: #3d5a00;
+  --primary-strong: #4a6b00;
+  --accent: #3d5a00;
+  --primary-text: #ffffff; /* text color on primary bg */
 
   /* Shadows and effects */
   --shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-  --header-bg: rgba(251, 251, 253, 0.72);
-  --header-border: rgba(210, 210, 215, 0.5);
-  --stat-bg: rgba(245, 245, 247, 0.8);
+  --header-bg: rgba(240, 236, 226, 0.82);
+  --header-border: rgba(224, 224, 224, 0.5);
+  --stat-bg: rgba(245, 245, 245, 0.8);
   --btn-secondary-bg: rgba(255, 255, 255, 0.72);
-  --footer-border: rgba(210, 210, 215, 0.6);
-  --glow-primary: transparent;
-  --glow-accent: transparent;
+  --footer-border: rgba(224, 224, 224, 0.6);
+  --glow-primary: rgba(61, 90, 0, 0.12);
+  --glow-accent: rgba(61, 90, 0, 0.06);
 
   /* Layout */
   --radius: 14px;
   --maxw: 980px;
 
+  /* Animation */
+  --ease-out-expo: cubic-bezier(0.65, 0.05, 0, 1);
+  --duration-default: 0.75s;
+  --duration-fast: 0.3s;
+
   /* Mobile drawer */
-  --drawer-bg: #f5f5f7;
+  --drawer-bg: #f0ece2;
 }
 
-/* Dark theme — true Apple dark */
+/* Dark theme — rich dark green */
 [data-theme="dark"] {
-  --bg-grad: #000000;
-  --surface: #1d1d1f;
-  --text: #f5f5f7;
-  --muted: #86868b;
-  --line: #424245;
-  --primary: #2997ff;
-  --primary-strong: #64b5f6;
-  --accent: #2997ff;
-  --shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
-  --header-bg: rgba(0, 0, 0, 0.72);
-  --header-border: rgba(66, 66, 69, 0.6);
-  --stat-bg: rgba(29, 29, 31, 0.9);
-  --btn-secondary-bg: rgba(29, 29, 31, 0.72);
-  --footer-border: rgba(66, 66, 69, 0.6);
-  --glow-primary: transparent;
-  --glow-accent: transparent;
-  --drawer-bg: #1d1d1f;
+  --bg-grad: #0a0f0a;
+  --surface: #141a14;
+  --text: #f0f0f0;
+  --muted: #8a8a8a;
+  --line: #2a2f2a;
+  --primary: #c8ff00;
+  --primary-strong: #d4ff33;
+  --accent: #c8ff00;
+  --primary-text: #0a0f0a;
+  --shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+  --header-bg: rgba(10, 15, 10, 0.85);
+  --header-border: rgba(42, 47, 42, 0.6);
+  --stat-bg: rgba(20, 26, 20, 0.9);
+  --btn-secondary-bg: rgba(20, 26, 20, 0.72);
+  --footer-border: rgba(42, 47, 42, 0.6);
+  --glow-primary: rgba(200, 255, 0, 0.12);
+  --glow-accent: rgba(200, 255, 0, 0.06);
+  --drawer-bg: #141a14;
 }
 
 /*
@@ -85,6 +92,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Context-aware selection */
+::selection {
+  background: var(--primary);
+  color: var(--primary-text);
+}
+
 a {
   color: inherit;
 }
@@ -92,18 +105,27 @@ a {
 h1,
 h2,
 h3 {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  line-height: 1.12;
+  font-family: "Space Grotesk", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.08;
   margin: 0;
-  letter-spacing: -0.022em;
+  letter-spacing: -0.03em;
   font-weight: 700;
 }
 
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /*
-  BACKGROUND GLOW — disabled for Apple clean look
+  Ensure main content renders above the fixed wire blob canvas (z-index: 0)
 */
-.background-glow {
-  display: none;
+main, header, footer {
+  position: relative;
+  z-index: 1;
 }
 
 /*
@@ -116,9 +138,10 @@ h3 {
 
 /* Section divider */
 .section-divider {
-  height: 1px;
+  height: 2px;
   border: none;
-  margin: 0;
-  background: var(--line);
-  opacity: 0.4;
+  margin: 0 auto;
+  background: var(--primary);
+  opacity: 0.2;
+  max-width: 80px;
 }

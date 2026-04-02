@@ -10,6 +10,7 @@ export default function PageTransition({ children }: { children: ReactNode }) {
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -20 }}
       transition={{ duration: 0.4, ease: smooth }}
+      style={{ position: 'relative', zIndex: 1 }}
     >
       {children}
     </motion.div>

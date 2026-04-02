@@ -22,14 +22,15 @@
 
 .title {
   margin-top: 0.8rem;
-  font-size: clamp(2.4rem, 5vw, 3.6rem);
-  line-height: 1.08;
-  letter-spacing: -0.03em;
+  font-size: clamp(2.8rem, 6vw, 4.2rem);
+  line-height: 1.02;
+  letter-spacing: -0.04em;
   font-weight: 700;
 }
 
 .title span {
   color: var(--primary);
+  text-shadow: 0 0 40px var(--glow-primary);
 }
 
 .summary {
@@ -62,7 +63,7 @@
   height: 280px;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid var(--line);
+  border: 3px solid var(--primary);
   display: block;
   position: relative;
   z-index: 2;
@@ -73,12 +74,12 @@
 
 .photoGlow {
   position: absolute;
-  inset: -20px;
+  inset: -30px;
   border-radius: 50%;
   background: radial-gradient(circle, var(--primary) 0%, transparent 60%);
   z-index: 0;
-  filter: blur(30px);
-  opacity: 0.15;
+  filter: blur(40px);
+  opacity: 0.2;
   pointer-events: none;
 }
 
@@ -86,29 +87,39 @@
 .btnPrimary,
 .btnSecondary {
   display: inline-block;
-  border-radius: 999px;
-  padding: 0.75rem 1.5rem;
+  padding: 0.8rem 1.8rem;
   text-decoration: none;
+  font-family: "Space Grotesk", "Inter", sans-serif;
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   border: 1px solid transparent;
-  transition: all 200ms cubic-bezier(0.25, 0.1, 0.25, 1);
+  border-radius: 0;
+  transition: transform var(--duration-fast) var(--ease-out-expo),
+              box-shadow var(--duration-fast) var(--ease-out-expo),
+              background var(--duration-fast) var(--ease-out-expo);
 }
 
 .btnPrimary:hover,
 .btnSecondary:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+}
+
+.btnPrimary:active,
+.btnSecondary:active {
+  transform: translateY(0);
 }
 
 .btnPrimary {
   background: var(--primary);
-  color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2);
+  color: var(--primary-text);
+  box-shadow: 0 2px 12px var(--glow-primary);
 }
 
 .btnPrimary:hover {
   background: var(--primary-strong);
-  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.3);
+  box-shadow: 0 6px 24px var(--glow-primary);
 }
 
 .btnSecondary {
@@ -118,7 +129,8 @@
 }
 
 .btnSecondary:hover {
-  border-color: var(--muted);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 /* ─── Stats row ─── */
@@ -199,6 +211,7 @@
 
 .eduCardMasters {
   border-left-color: var(--primary);
+  border-left-width: 3px;
 }
 
 .eduCardBachelors {
@@ -267,9 +280,10 @@
 
 /* ─── Timeline ─── */
 .timeline {
-  border-left: 2px solid var(--line);
+  border-left: 2px solid var(--primary);
   margin-top: 1.5rem;
   padding-left: 1.5rem;
+  border-image: linear-gradient(to bottom, var(--primary), var(--line)) 1;
 }
 
 /* ─── Certifications card ─── */
@@ -474,7 +488,7 @@
 
 .slideBtn:hover {
   background: var(--primary);
-  color: #fff;
+  color: var(--primary-text);
   border-color: var(--primary);
 }
 

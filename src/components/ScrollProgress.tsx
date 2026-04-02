@@ -15,6 +15,7 @@ export default function ScrollProgress() {
         right: 0,
         height: 3,
         background: 'var(--primary)',
+        boxShadow: '0 0 12px var(--glow-primary), 0 0 30px var(--glow-accent)',
         zIndex: 150,
       }}
     />

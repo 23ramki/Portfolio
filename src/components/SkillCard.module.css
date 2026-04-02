@@ -5,11 +5,15 @@
   box-shadow: var(--shadow);
   padding: 1.4rem;
   cursor: default;
-  transition: box-shadow 200ms ease, transform 200ms ease;
+  position: relative;
+  transition: box-shadow var(--duration-fast) var(--ease-out-expo),
+              transform var(--duration-fast) var(--ease-out-expo),
+              border-color var(--duration-fast) var(--ease-out-expo);
 }
 
 .card:hover {
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary);
 }
 
 .icon {

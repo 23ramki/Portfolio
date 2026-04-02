@@ -10,14 +10,20 @@
 
 /* Timeline dot */
 .dot {
-  width: 9px;
-  height: 9px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background: var(--primary);
   position: absolute;
   left: -1.65rem;
   top: 0.48rem;
-  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.12);
+  box-shadow: 0 0 0 4px var(--glow-primary);
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 4px var(--glow-primary); }
+  50% { box-shadow: 0 0 0 8px var(--glow-accent); }
 }
 
 .role {

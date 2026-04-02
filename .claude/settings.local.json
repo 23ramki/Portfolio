@@ -20,7 +20,15 @@
       "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" log --pretty=format:\"%h %s %an %ad\" --date=short)",
       "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" log --name-status)",
       "Bash(xargs -I {} basename {})",
-      "WebFetch(domain:unsplash.com)"
+      "WebFetch(domain:unsplash.com)",
+      "Bash(npm run:*)",
+      "WebFetch(domain:landonorris.com)",
+      "Bash(find /Users/ramki/Desktop/untitled folder/Portfolio -maxdepth 1 -name tailwind* -o -name postcss*)",
+      "Bash(/opt/homebrew/bin/node --version)",
+      "Read(//opt/homebrew/lib/node_modules/npm/bin/**)",
+      "Bash(/opt/homebrew/bin/npm --version)",
+      "Bash(PATH=\"/opt/homebrew/bin:$PATH\" npm install lenis)",
+      "Bash(PATH=\"/opt/homebrew/bin:$PATH\" npx tsc --noEmit --pretty)"
     ]
   }
 }

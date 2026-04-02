@@ -3,26 +3,26 @@
   bottom: 2rem;
   right: 2rem;
   z-index: 50;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  border-radius: 0;
   background: var(--primary);
-  color: #fff;
-  font-size: 1rem;
+  color: var(--primary-text);
+  font-size: 1.1rem;
   font-weight: 700;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 12px rgba(0, 113, 227, 0.25);
+  box-shadow: 0 2px 16px var(--glow-primary);
   line-height: 1;
-  transition: all 200ms ease;
+  transition: all var(--duration-fast) var(--ease-out-expo);
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 18px rgba(0, 113, 227, 0.35);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 24px var(--glow-primary);
 }
 
 .btn:focus-visible {

@@ -9,8 +9,11 @@
   They both call useTheme() directly via ThemeContext — no prop drilling needed.
 */
 
+import { useEffect } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
+import Lenis from 'lenis'
+import WireBlobs from './components/WireBlobs'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
@@ -22,9 +25,26 @@ import CaseStudyPage from './pages/CaseStudyPage'
 function App() {
   const location = useLocation()
 
+  // Lenis smooth scroll
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    })
+
+    function raf(time: number) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
+    requestAnimationFrame(raf)
+
+    return () => lenis.destroy()
+  }, [])
+
   return (
     <>
-      <div className="background-glow" />
+      <WireBlobs />
       <ScrollProgress />
       <Header />
       <AnimatePresence mode="wait">

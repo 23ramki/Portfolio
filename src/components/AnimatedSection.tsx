@@ -12,6 +12,8 @@ interface AnimatedSectionProps {
   duration?: number
   /** If true, only fade in once (no fade-out on scroll past) */
   once?: boolean
+  /** Use clip-path reveal instead of opacity fade */
+  clipReveal?: boolean
 }
 
 export default function AnimatedSection({
@@ -22,6 +24,7 @@ export default function AnimatedSection({
   distance = 50,
   scale: scaleProp,
   once = false,
+  clipReveal = false,
 }: AnimatedSectionProps) {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -35,6 +38,13 @@ export default function AnimatedSection({
     scrollYProgress,
     once ? [0, 0.25, 1] : [0, 0.25, 0.75, 1],
     once ? [0, 1, 1] : [0, 1, 1, 0],
+  )
+
+  // Clip-path reveal — always call hook (rules of hooks), conditionally use value
+  const clipPath = useTransform(
+    scrollYProgress,
+    [0, 0.3],
+    ['inset(100% 50% 0% 50%)', 'inset(0% 0% 0% 0%)'],
   )
 
   // Compute direction-based offsets
@@ -65,7 +75,14 @@ export default function AnimatedSection({
   )
 
   // Build style object based on which transforms are active
-  const style: Record<string, unknown> = { opacity }
+  const style: Record<string, unknown> = {}
+
+  if (clipReveal) {
+    style.clipPath = clipPath
+    style.opacity = 1
+  } else {
+    style.opacity = opacity
+  }
 
   if (direction !== 'none') {
     if (isHorizontal) {
