@@ -10,11 +10,13 @@
   - Sends form data to the email tied to your access key
 */
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import type { FormEvent, ChangeEvent } from 'react'
 import styles from './ContactForm.module.css'
+import { isContentClean } from '../utils/contentFilter'
 
 const WEB3FORMS_ACCESS_KEY = '11803f1c-9e45-4a78-8b66-886e5fc6935d'
+const COOLDOWN_SECONDS = 60
 
 export default function ContactForm() {
   const [name, setName] = useState<string>('')
@@ -23,12 +25,40 @@ export default function ContactForm() {
   const [message, setMessage] = useState<string>('')
   const [status, setStatus] = useState<string>('')
   const [submitting, setSubmitting] = useState<boolean>(false)
+  const [cooldown, setCooldown] = useState<number>(0)
+  const cooldownRef = useRef<ReturnType<typeof setInterval> | null>(null)
+
+  const startCooldown = () => {
+    setCooldown(COOLDOWN_SECONDS)
+    cooldownRef.current = setInterval(() => {
+      setCooldown((prev) => {
+        if (prev <= 1) {
+          clearInterval(cooldownRef.current!)
+          cooldownRef.current = null
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+  }
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     if (!name.trim() || !email.trim() || !message.trim()) {
       setStatus('Please complete Name, Email, and Message.')
+      return
+    }
+
+    if (cooldown > 0) {
+      setStatus(`Please wait ${cooldown} seconds before sending another message.`)
+      return
+    }
+
+    // Content filter — block offensive/abusive submissions
+    if (!isContentClean([name, email, company, message])) {
+      setStatus('Your message could not be sent.')
+      startCooldown()
       return
     }
 
@@ -43,6 +73,7 @@ export default function ContactForm() {
           access_key: WEB3FORMS_ACCESS_KEY,
           subject: `Portfolio Inquiry - ${name}`,
           from_name: name,
+          botcheck: '',
           name,
           email,
           company: company || 'N/A',
@@ -58,6 +89,7 @@ export default function ContactForm() {
         setEmail('')
         setCompany('')
         setMessage('')
+        startCooldown()
       } else {
         setStatus('Something went wrong. Please try again.')
       }
@@ -77,6 +109,15 @@ export default function ContactForm() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit} noValidate>
+      {/* Honeypot field — hidden from humans, catches bots that auto-fill everything */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        style={{ display: 'none' }}
+        tabIndex={-1}
+        autoComplete="off"
+      />
+
       <label htmlFor="contact-name">Name</label>
       <input
         id="contact-name"
@@ -115,8 +156,8 @@ export default function ContactForm() {
         onChange={(e) => handleChange(e, setMessage)}
       />
 
-      <button className={styles.submitBtn} type="submit" disabled={submitting}>
-        {submitting ? 'Sending...' : 'Send Message'}
+      <button className={styles.submitBtn} type="submit" disabled={submitting || cooldown > 0}>
+        {submitting ? 'Sending...' : cooldown > 0 ? `Wait ${cooldown}s` : 'Send Message'}
       </button>
 
       {status && (

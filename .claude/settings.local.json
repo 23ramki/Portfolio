@@ -28,7 +28,14 @@
       "Read(//opt/homebrew/lib/node_modules/npm/bin/**)",
       "Bash(/opt/homebrew/bin/npm --version)",
       "Bash(PATH=\"/opt/homebrew/bin:$PATH\" npm install lenis)",
-      "Bash(PATH=\"/opt/homebrew/bin:$PATH\" npx tsc --noEmit --pretty)"
+      "Bash(PATH=\"/opt/homebrew/bin:$PATH\" npx tsc --noEmit --pretty)",
+      "Bash(echo $PATH)",
+      "Bash(source ~/.zshrc)",
+      "Read(//usr/local/**)",
+      "Read(//opt/homebrew/Cellar/node/25.8.0/bin/**)",
+      "Bash(mdfind -name node)",
+      "Bash(grep -E '/bin/node$')",
+      "Bash(export PATH=\"/opt/homebrew/bin:$PATH\")"
     ]
   }
 }
