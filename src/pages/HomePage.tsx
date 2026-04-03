@@ -7,7 +7,6 @@ import {
   experiences,
   hero,
   profilePhoto,
-  projectDocuments,
   siteMeta,
   skills,
   stats,
@@ -17,7 +16,6 @@ import StatCard from '../components/StatCard'
 import SkillCard from '../components/SkillCard'
 import TimelineItem from '../components/TimelineItem'
 import CaseStudyCard from '../components/CaseStudyCard'
-import DocumentCard from '../components/DocumentCard'
 import ContactForm from '../components/ContactForm'
 import AnimatedSection from '../components/AnimatedSection'
 import SkillMarquee from '../components/SkillMarquee'
@@ -70,7 +68,7 @@ function SplitText({ text, className, delay = 0 }: { text: string; className?: s
       {words.map((word, i) => (
         <motion.span
           key={i}
-          style={{ display: 'inline-block', marginRight: '0.3em' }}
+          style={{ display: 'inline-block', marginRight: i < words.length - 1 ? '0.3em' : 0 }}
           variants={{
             hidden: { opacity: 0, y: 50, rotateX: -60, filter: 'blur(8px)' },
             visible: {
@@ -335,31 +333,6 @@ export default function HomePage() {
               {caseStudies.map((study) => (
                 <motion.div key={study.slug} variants={staggerItem}>
                   <CaseStudyCard study={study} />
-                </motion.div>
-              ))}
-            </motion.div>
-          </section>
-
-          <hr className="section-divider container" />
-
-          {/* ─── Project Documents ─── */}
-          <section id="documents" className={`${styles.section} container`} style={{ scrollMarginTop: '80px' }}>
-            <AnimatedSection direction="up" distance={60} scale={0.97}>
-              <SectionHeading
-                title="Project Documents"
-                subtitle="Reports, notebooks, and decks behind the case studies."
-              />
-            </AnimatedSection>
-            <motion.div
-              className={styles.docGrid}
-              variants={staggerContainer}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-60px' }}
-            >
-              {projectDocuments.map((doc) => (
-                <motion.div key={doc.title} variants={staggerItem}>
-                  <DocumentCard doc={doc} />
                 </motion.div>
               ))}
             </motion.div>

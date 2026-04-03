@@ -31,15 +31,15 @@ export const hero: HeroContent = {
   eyebrow: 'Business Analyst Portfolio',
   title: "I'm Adithya Ramakrishnan. I turn data into decisions that drive growth.",
   summary:
-    '3+ years designing KPI dashboards for B2B recurring revenue operations. I make data credible, decisions faster, and stakeholder reviews sharper — across 70+ locations.',
+    "I've spent the last 3+ years building KPI dashboards and running performance reviews for B2B recurring revenue operations across 70+ locations. I focus on making the data credible, the decisions faster, and the stakeholder conversations sharper.",
 }
 
 // ─── About ────────────────────────────────────────────────
 export const about: AboutContent = {
   paragraphs: [
-    "I specialize in translating operational and CRM data into commercial clarity. Over the past 3+ years, I've partnered with senior stakeholders across 70+ OEM-approved dealership service centers in a distributed B2B recurring revenue model — designing and presenting KPI dashboards used in structured performance reviews that align operational visibility with margin, upsell conversion, and cost optimization goals.",
-    'My work sits at the intersection of analytics and business impact. I track conversion performance of value-added services, analyze billing cycles and material consumption, and participate in pricing and procurement discussions to support data-informed decisions. When reporting discrepancies arise, I reinforce data credibility through deeper analysis and KPI standardization.',
-    "Technically, I work across Salesforce, Tableau, Power BI, SQL, and relational database environments — with graduate-level grounding in predictive modeling and BI architecture. I'm particularly drawn to roles where analytics, stakeholder alignment, and measurable revenue impact converge.",
+    "For the past 3+ years, I've been working closely with senior stakeholders across 70+ OEM-approved dealership service centers, all operating under a distributed B2B recurring revenue model. My day-to-day involves designing and presenting KPI dashboards that tie operational data back to things like margin, upsell conversion, and cost optimization, so the performance reviews actually lead to decisions.",
+    "A big part of what I do is tracking conversion performance on value-added services, digging into billing cycles and material consumption, and sitting in on pricing and procurement discussions to make sure the numbers hold up. When reporting discrepancies come up, I work through the data to reinforce credibility and standardize KPIs across teams.",
+    "On the tools side, I work across Salesforce, Tableau, Power BI, SQL, and relational database environments. I also have a graduate-level background in predictive modeling and BI architecture. What I'm really looking for is a role where analytics, stakeholder alignment, and measurable revenue impact all come together.",
   ],
 }
 

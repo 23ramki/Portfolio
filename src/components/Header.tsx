@@ -9,7 +9,6 @@ const HOME_LINKS = [
   { href: '#skills', label: 'Skills' },
   { href: '#experience', label: 'Experience' },
   { href: '#case-studies', label: 'Cases' },
-  { href: '#documents', label: 'Docs' },
   { href: '#education', label: 'Education' },
   { href: '#contact', label: 'Contact' },
 ]

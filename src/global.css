@@ -136,6 +136,24 @@ main, header, footer {
   margin-inline: auto;
 }
 
+@media (max-width: 400px) {
+  .container {
+    width: min(100% - 1.5rem, var(--maxw));
+  }
+}
+
+@media (min-width: 1400px) {
+  :root {
+    --maxw: 1100px;
+  }
+}
+
+@media (min-width: 1800px) {
+  :root {
+    --maxw: 1200px;
+  }
+}
+
 /* Section divider */
 .section-divider {
   height: 2px;

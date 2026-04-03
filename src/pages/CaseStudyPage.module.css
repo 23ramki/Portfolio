@@ -107,3 +107,34 @@
   color: var(--text);
   background: var(--btn-secondary-bg);
 }
+
+@media (max-width: 600px) {
+  .page {
+    padding-top: 4.5rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .page {
+    padding-top: 3.5rem;
+  }
+
+  .summary {
+    font-size: 0.95rem;
+  }
+
+  .list {
+    padding-left: 1rem;
+    font-size: 0.92rem;
+  }
+}

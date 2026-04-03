@@ -1,11 +1,6 @@
 .item {
   position: relative;
-  margin-bottom: 2.75rem;
   padding-left: 0.75rem;
-}
-
-.item:last-child {
-  margin-bottom: 0;
 }
 
 /* Timeline dot */
