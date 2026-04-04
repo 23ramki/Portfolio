@@ -1,4 +1,4 @@
-import { useState, useCallback, useRef, useEffect } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion'
 import {
   about,
@@ -19,6 +19,7 @@ import CaseStudyCard from '../components/CaseStudyCard'
 import ContactForm from '../components/ContactForm'
 import AnimatedSection from '../components/AnimatedSection'
 import SkillMarquee from '../components/SkillMarquee'
+import MagneticButton from '../components/MagneticButton'
 import styles from './HomePage.module.css'
 
 // Norris-inspired easing: fast start, slow finish
@@ -39,7 +40,7 @@ const staggerItem = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.75, ease: smooth },
+    transition: { duration: 0.45, ease: smooth },
   },
 }
 
@@ -62,7 +63,7 @@ function SplitText({ text, className, delay = 0 }: { text: string; className?: s
       animate="visible"
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: 0.06, delayChildren: delay } },
+        visible: { transition: { staggerChildren: 0.04, delayChildren: delay } },
       }}
     >
       {words.map((word, i) => (
@@ -70,13 +71,13 @@ function SplitText({ text, className, delay = 0 }: { text: string; className?: s
           key={i}
           style={{ display: 'inline-block', marginRight: i < words.length - 1 ? '0.3em' : 0 }}
           variants={{
-            hidden: { opacity: 0, y: 50, rotateX: -60, filter: 'blur(8px)' },
+            hidden: { opacity: 0, y: 30, rotateX: -40, filter: 'blur(4px)' },
             visible: {
               opacity: 1,
               y: 0,
               rotateX: 0,
               filter: 'blur(0px)',
-              transition: { duration: 0.7, ease: smooth },
+              transition: { duration: 0.45, ease: smooth },
             },
           }}
         >
@@ -96,11 +97,6 @@ export default function HomePage() {
   const prevPhoto = useCallback(() => {
     setPhotoIndex((prev) => (prev - 1 + photos.length) % photos.length)
   }, [])
-
-  useEffect(() => {
-    const timer = setInterval(nextPhoto, 5000)
-    return () => clearInterval(timer)
-  }, [nextPhoto])
 
   // 3D tilt for profile photo — tracks mouse position
   const photoRef = useRef<HTMLDivElement>(null)
@@ -157,9 +153,10 @@ export default function HomePage() {
 
   return (
         <motion.main
+          id="main-content"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, ease: smooth }}
+          transition={{ duration: 0.4, ease: smooth }}
         >
           {/* ─── Hero ─── */}
           <section className={`${styles.hero} container`}>
@@ -169,47 +166,47 @@ export default function HomePage() {
                 style={{ perspective: 600 }}
               >
                 <div>
-                  <SplitText text="I turn data into decisions that drive growth." delay={0.2} />
+                  <SplitText text="I turn data into decisions that drive growth." delay={0.1} />
                 </div>
                 <span>
-                  <SplitText text={`I'm ${siteMeta.name}.`} delay={0.7} />
+                  <SplitText text={`I'm ${siteMeta.name}.`} delay={0.45} />
                 </span>
               </motion.h1>
 
               <motion.p
                 className={styles.summary}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9, duration: 1, ease: smooth }}
+                transition={{ delay: 0.55, duration: 0.5, ease: smooth }}
               >
                 {hero.summary}
               </motion.p>
 
               <motion.div
                 className={styles.heroActions}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.1, duration: 0.9, ease: smooth }}
+                transition={{ delay: 0.7, duration: 0.45, ease: smooth }}
               >
-                <a className={styles.btnPrimary} href="#case-studies">
+                <MagneticButton className={styles.btnPrimary} href="#case-studies">
                   View Case Studies
-                </a>
-                <a
+                </MagneticButton>
+                <MagneticButton
                   className={styles.btnSecondary}
                   href="/assets/Adithya_Ramakrishnan_Resume.pdf"
                   target="_blank"
                   rel="noreferrer"
                 >
                   Download Resume
-                </a>
-                <a
+                </MagneticButton>
+                <MagneticButton
                   className={styles.btnSecondary}
                   href={siteMeta.linkedin}
                   target="_blank"
                   rel="noreferrer"
                 >
                   LinkedIn Profile
-                </a>
+                </MagneticButton>
               </motion.div>
             </div>
 
@@ -217,9 +214,9 @@ export default function HomePage() {
             <motion.div
               ref={photoRef}
               className={styles.heroImageWrap}
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 1.2, ease: smooth }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.15, duration: 0.5, ease: smooth }}
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
               style={{ perspective: 800 }}
@@ -258,8 +255,6 @@ export default function HomePage() {
             ))}
           </motion.section>
 
-          <hr className="section-divider container" />
-
           {/* ─── About ─── */}
           <section id="about" className={`${styles.section} container`} style={{ scrollMarginTop: '80px' }}>
             <AnimatedSection direction="up" distance={60} scale={0.97}>
@@ -273,8 +268,6 @@ export default function HomePage() {
               </div>
             </AnimatedSection>
           </section>
-
-          <hr className="section-divider container" />
 
           {/* ─── Skills ─── */}
           <section id="skills" className={`${styles.section} container`} style={{ scrollMarginTop: '80px' }}>
@@ -297,8 +290,6 @@ export default function HomePage() {
             </motion.div>
           </section>
 
-          <hr className="section-divider container" />
-
           {/* ─── Experience ─── */}
           <section id="experience" className={`${styles.section} container`} style={{ scrollMarginTop: '80px' }}>
             <AnimatedSection direction="up" distance={60} scale={0.97}>
@@ -312,8 +303,6 @@ export default function HomePage() {
               ))}
             </div>
           </section>
-
-          <hr className="section-divider container" />
 
           {/* ─── Case Studies ─── */}
           <section id="case-studies" className={`${styles.section} container`} style={{ scrollMarginTop: '80px' }}>
@@ -337,8 +326,6 @@ export default function HomePage() {
               ))}
             </motion.div>
           </section>
-
-          <hr className="section-divider container" />
 
           {/* ─── Education ─── */}
           <section id="education" className={`${styles.section} container`} style={{ scrollMarginTop: '80px' }}>
@@ -450,8 +437,6 @@ export default function HomePage() {
             </div>
           </section>
 
-          <hr className="section-divider container" />
-
           {/* ─── Beyond Work ─── */}
           <section id="beyond-work" className={`${styles.section} container`} style={{ scrollMarginTop: '80px' }}>
             <AnimatedSection direction="up" distance={60} scale={0.97}>
@@ -471,11 +456,10 @@ export default function HomePage() {
                         src={photos[photoIndex]}
                         alt={`Photography by Adithya — ${photoIndex + 1} of ${photos.length}`}
                         className={styles.slideImage}
+                        loading="lazy"
                         initial={{ opacity: 0 }}
-                        animate={{ opacity: 1, scale: [1, 1.05], transition: {
-                          opacity: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
-                          scale: { duration: 5, ease: 'linear' },
-                        }}}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                         exit={{ opacity: 0, transition: { duration: 0.3, ease: [0.4, 0, 1, 1] } }}
                       />
                     </AnimatePresence>
@@ -503,8 +487,6 @@ export default function HomePage() {
               </div>
             </AnimatedSection>
           </section>
-
-          <hr className="section-divider container" />
 
           {/* ─── Contact ─── */}
           <section

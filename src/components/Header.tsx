@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useTheme } from '../context/ThemeContext'
 import ThemeToggle from './ThemeToggle'
 import styles from './Header.module.css'
 
@@ -15,6 +16,7 @@ const HOME_LINKS = [
 
 export default function Header() {
   const location = useLocation()
+  const { theme } = useTheme()
   const isHome = location.pathname === '/'
   const [menuOpen, setMenuOpen] = useState(false)
   const [hidden, setHidden] = useState(false)
@@ -29,18 +31,24 @@ export default function Header() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
-  // Hide header on scroll down, show on scroll up
+  // Hide header on scroll down, show on scroll up (rAF-throttled)
   useEffect(() => {
+    let ticking = false
     const handleScroll = () => {
-      const currentY = window.scrollY
-      if (currentY < 60) {
-        setHidden(false)
-      } else if (currentY > lastScrollY.current + 5) {
-        setHidden(true)
-      } else if (currentY < lastScrollY.current - 5) {
-        setHidden(false)
-      }
-      lastScrollY.current = currentY
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        const currentY = window.scrollY
+        if (currentY < 60) {
+          setHidden(false)
+        } else if (currentY > lastScrollY.current + 5) {
+          setHidden(true)
+        } else if (currentY < lastScrollY.current - 5) {
+          setHidden(false)
+        }
+        lastScrollY.current = currentY
+        ticking = false
+      })
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
@@ -52,8 +60,12 @@ export default function Header() {
     <>
       <header className={`${styles.header} ${hidden && !menuOpen ? styles.headerHidden : ''}`}>
         <div className={`container ${styles.navWrap}`}>
-          <Link className={styles.brand} to="/" onClick={close}>
-            ADITHYA RAMAKRISHNAN
+          <Link className={styles.brand} to="/" onClick={close} aria-label="Adithya Ramakrishnan – Home">
+            <img
+              className={styles.brandLogo}
+              src={theme === 'dark' ? '/assets/Dark Mode.png' : '/assets/Light Mode.png'}
+              alt="AR"
+            />
           </Link>
 
           <nav className={styles.nav} aria-label="Primary Navigation">

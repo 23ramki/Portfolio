@@ -94,7 +94,7 @@
 
 .btnPrimary {
   background: var(--primary);
-  color: #ffffff;
+  color: var(--primary-text);
   box-shadow: 0 2px 8px rgba(0, 113, 227, 0.2);
 }
 

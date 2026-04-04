@@ -25,14 +25,16 @@
 /* ─── Brand ─── */
 .brand {
   text-decoration: none;
-  color: var(--text);
-  font-family: "Space Grotesk", "Inter", sans-serif;
-  letter-spacing: 0.08em;
-  font-weight: 700;
-  font-size: 0.82rem;
+  color: var(--primary);
   flex-shrink: 0;
-  white-space: nowrap;
-  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+}
+
+.brandLogo {
+  height: 42px;
+  width: auto;
+  display: block;
 }
 
 /* ─── Desktop nav ─── */

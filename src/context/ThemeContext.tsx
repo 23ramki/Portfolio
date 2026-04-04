@@ -30,7 +30,7 @@
      localStorage is slow compared to a simple value.
 */
 
-import { createContext, useContext, useState, useEffect } from 'react'
+import { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react'
 import type { ReactNode } from 'react'
 
 // Union type — theme can ONLY be 'light' or 'dark', nothing else
@@ -39,7 +39,7 @@ type Theme = 'light' | 'dark'
 // The shape of the context value
 interface ThemeContextValue {
   theme: Theme
-  toggleTheme: () => void
+  toggleTheme: (e?: React.MouseEvent | MouseEvent) => void
 }
 
 // Create the context. undefined = "no value yet" (before Provider renders)
@@ -60,16 +60,56 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       : 'light'
   })
 
+  const isFirstRender = useRef(true)
+
   // useEffect: runs AFTER every render where `theme` changed
   // Sets the data-theme attribute on <html> so CSS variables switch
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme)
     localStorage.setItem('portfolio-theme', theme)
-  }, [theme]) // The [theme] dependency array means "only run when theme changes"
+    isFirstRender.current = false
+  }, [theme])
 
-  const toggleTheme = () => {
-    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
-  }
+  const toggleTheme = useCallback((e?: React.MouseEvent | MouseEvent) => {
+    // Determine origin point for the radial wipe
+    const x = e ? (e as MouseEvent).clientX : window.innerWidth / 2
+    const y = e ? (e as MouseEvent).clientY : 40
+
+    // Calculate max radius needed to cover the entire screen from origin
+    const maxRadius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y)
+    )
+
+    // Use View Transitions API if available for a radial wipe
+    if (document.startViewTransition && !isFirstRender.current) {
+      document.startViewTransition(() => {
+        setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
+      })
+      // Inject one-shot animation keyframes targeting the view-transition pseudo
+      const style = document.createElement('style')
+      style.textContent = `
+        ::view-transition-old(root),
+        ::view-transition-new(root) {
+          animation: none;
+          mix-blend-mode: normal;
+        }
+        ::view-transition-new(root) {
+          clip-path: circle(0px at ${x}px ${y}px);
+          animation: radial-wipe 0.5s cubic-bezier(0.65, 0.05, 0, 1) forwards;
+        }
+        @keyframes radial-wipe {
+          to { clip-path: circle(${maxRadius}px at ${x}px ${y}px); }
+        }
+      `
+      document.head.appendChild(style)
+      // Clean up the injected style after animation
+      setTimeout(() => style.remove(), 600)
+    } else {
+      // Fallback: instant swap
+      setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
+    }
+  }, [])
 
   // The Provider supplies { theme, toggleTheme } to all descendants
   return (

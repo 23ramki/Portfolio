@@ -106,6 +106,16 @@ export default function WireBlobs() {
     if (!ctx) return
 
     let running = true
+    let isVisible = true
+
+    // Pause animation when tab is not visible
+    const handleVisibility = () => {
+      isVisible = !document.hidden
+      if (isVisible && running) {
+        frameRef.current = requestAnimationFrame(draw)
+      }
+    }
+    document.addEventListener('visibilitychange', handleVisibility)
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio, 2)
@@ -122,7 +132,7 @@ export default function WireBlobs() {
       document.documentElement.getAttribute('data-theme') === 'dark'
 
     const draw = (time: number) => {
-      if (!running) return
+      if (!running || !isVisible) return
       const w = window.innerWidth
       const h = window.innerHeight
 
@@ -161,6 +171,7 @@ export default function WireBlobs() {
       running = false
       cancelAnimationFrame(frameRef.current)
       window.removeEventListener('resize', resize)
+      document.removeEventListener('visibilitychange', handleVisibility)
     }
   }, [])
 

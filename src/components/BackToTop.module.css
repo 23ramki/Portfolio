@@ -3,29 +3,43 @@
   bottom: 2rem;
   right: 2rem;
   z-index: 50;
-  width: 44px;
-  height: 44px;
-  border-radius: 0;
-  background: var(--primary);
-  color: var(--primary-text);
-  font-size: 1.1rem;
-  font-weight: 700;
-  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--line);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 16px var(--glow-primary);
-  line-height: 1;
-  transition: all var(--duration-fast) var(--ease-out-expo);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  padding: 0;
+  color: var(--text);
 }
 
 .btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 24px var(--glow-primary);
+  box-shadow: 0 6px 28px var(--glow-primary);
+  border-color: var(--primary);
 }
 
 .btn:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 3px;
+}
+
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  z-index: 1;
+  color: var(--primary);
 }

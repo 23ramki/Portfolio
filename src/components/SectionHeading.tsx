@@ -1,41 +1,53 @@
 /*
   SECTION HEADING COMPONENT
   =========================
-  A reusable heading used at the top of every section.
-
-  KEY CONCEPTS:
-
-  1. Props Interface:
-     `interface SectionHeadingProps` defines what data this component expects.
-     Think of it as a contract: "To use this component, you MUST provide a title
-     and you MAY provide a subtitle."
-
-  2. Destructuring:
-     `({ title, subtitle }: SectionHeadingProps)` pulls `title` and `subtitle`
-     out of the props object. It's shorthand for:
-       function SectionHeading(props: SectionHeadingProps) {
-         const title = props.title
-         const subtitle = props.subtitle
-       }
-
-  3. Conditional rendering:
-     `{subtitle && <p>...</p>}` means "if subtitle exists, render the <p>."
-     If subtitle is undefined (not provided), nothing renders. This is called
-     "short-circuit evaluation."
+  A reusable heading with a scroll-triggered clip-path reveal.
+  The heading text sweeps in from the bottom as it enters the viewport,
+  while the accent underline draws itself in.
 */
 
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import styles from './SectionHeading.module.css'
 
 interface SectionHeadingProps {
   title: string
-  subtitle?: string  // The ? makes this optional
+  subtitle?: string
 }
 
+const smooth = [0.16, 1, 0.3, 1] as const
+
 export default function SectionHeading({ title, subtitle }: SectionHeadingProps) {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-60px' })
+
   return (
-    <div className={styles.heading}>
-      <h2>{title}</h2>
-      {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
+    <div className={styles.heading} ref={ref}>
+      <div className={styles.titleWrap}>
+        <motion.h2
+          initial={{ y: '100%' }}
+          animate={isInView ? { y: 0 } : { y: '100%' }}
+          transition={{ duration: 0.6, ease: smooth }}
+        >
+          {title}
+        </motion.h2>
+      </div>
+      <motion.span
+        className={styles.accent}
+        initial={{ scaleX: 0 }}
+        animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
+        transition={{ duration: 0.5, delay: 0.3, ease: smooth }}
+      />
+      {subtitle && (
+        <motion.p
+          className={styles.subtitle}
+          initial={{ opacity: 0, y: 12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+          transition={{ duration: 0.5, delay: 0.35, ease: smooth }}
+        >
+          {subtitle}
+        </motion.p>
+      )}
     </div>
   )
 }

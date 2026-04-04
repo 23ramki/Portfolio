@@ -1,0 +1,19 @@
+{
+  "agents": {
+    "portfolio-analyzer": {
+      "agentId": "portfolio-analyzer",
+      "agentType": "coder",
+      "status": "idle",
+      "health": 1,
+      "taskCount": 0,
+      "config": {
+        "model": "sonnet"
+      },
+      "createdAt": "2026-04-04T09:27:22.616Z",
+      "domain": "frontend",
+      "model": "sonnet",
+      "modelRoutedBy": "explicit"
+    }
+  },
+  "version": "3.0.0"
+}

@@ -101,6 +101,7 @@ export default function AnimatedSection({
       ref={ref}
       className={className}
       style={style}
+      data-animated
     >
       {children}
     </motion.div>

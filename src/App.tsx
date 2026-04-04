@@ -9,7 +9,7 @@
   They both call useTheme() directly via ThemeContext — no prop drilling needed.
 */
 
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Lenis from 'lenis'
@@ -24,6 +24,36 @@ import CaseStudyPage from './pages/CaseStudyPage'
 
 function App() {
   const location = useLocation()
+  const prevPathRef = useRef(location.pathname)
+  const scrollPositions = useRef<Record<string, number>>({})
+  const lenisRef = useRef<Lenis | null>(null)
+
+  // Save/restore scroll position on navigation
+  useEffect(() => {
+    const prevPath = prevPathRef.current
+    const currentPath = location.pathname
+
+    if (prevPath !== currentPath) {
+      // Save scroll position of the page we're leaving
+      scrollPositions.current[prevPath] = window.scrollY
+
+      if (currentPath.startsWith('/case-studies/')) {
+        // Navigating to a case study — scroll to top immediately
+        lenisRef.current?.scrollTo(0, { immediate: true })
+        window.scrollTo(0, 0)
+      } else if (scrollPositions.current[currentPath] !== undefined) {
+        // Navigating back (e.g. to home) — restore position after page transition
+        const savedY = scrollPositions.current[currentPath]
+        // Wait for AnimatePresence exit (0.4s) + enter animation to start
+        setTimeout(() => {
+          lenisRef.current?.scrollTo(savedY, { immediate: true })
+          window.scrollTo(0, savedY)
+        }, 500)
+      }
+
+      prevPathRef.current = currentPath
+    }
+  }, [location.pathname])
 
   // Lenis smooth scroll
   useEffect(() => {
@@ -32,18 +62,27 @@ function App() {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     })
+    lenisRef.current = lenis
+
+    let rafId: number
 
     function raf(time: number) {
       lenis.raf(time)
-      requestAnimationFrame(raf)
+      rafId = requestAnimationFrame(raf)
     }
-    requestAnimationFrame(raf)
+    rafId = requestAnimationFrame(raf)
 
-    return () => lenis.destroy()
+    return () => {
+      cancelAnimationFrame(rafId)
+      lenis.destroy()
+      lenisRef.current = null
+    }
   }, [])
 
   return (
     <>
+      {/* Skip-to-content link for keyboard/screen reader users */}
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <WireBlobs />
       <ScrollProgress />
       <Header />

@@ -1,42 +1,17 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm create vite@latest . -- --template react-ts)",
-      "Bash(npm install react-router-dom)",
-      "Bash(npm ls react)",
-      "Bash(npm install framer-motion)",
-      "Bash(\"/Users/ramki/Desktop/untitled folder/Portfolio/src/components/CaseStudyCard.tsx\":*)",
-      "Bash(__NEW_LINE_5c91e7f37efd1f71__ cat)",
-      "Bash(\"/Users/ramki/Desktop/untitled folder/Portfolio/src/components/DocumentCard.tsx\":*)",
-      "Bash(__NEW_LINE_dec176eae94d691e__ cat)",
-      "Bash(\"/Users/ramki/Desktop/untitled folder/Portfolio/src/pages/HomePage.tsx\":*)",
-      "Bash(npx tsc --noEmit)",
-      "Bash(node -e \"const fm = require\\(''./node_modules/framer-motion/package.json''\\); console.log\\(''framer-motion peerDeps:'', JSON.stringify\\(fm.peerDependencies\\)\\); console.log\\(''version:'', fm.version\\)\")",
-      "Bash(python3 -c \":*)",
-      "Bash(pip3 install pypdf --quiet)",
-      "Bash(pip3 install pypdf --break-system-packages --quiet)",
-      "mcp__Claude_Preview__preview_start",
-      "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" log --oneline)",
-      "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" log --pretty=format:\"%h %s %an %ad\" --date=short)",
-      "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" log --name-status)",
-      "Bash(xargs -I {} basename {})",
-      "WebFetch(domain:unsplash.com)",
+      "mcp__ruflo__swarm_init",
+      "mcp__ruflo__agent_spawn",
       "Bash(npm run:*)",
-      "WebFetch(domain:landonorris.com)",
-      "Bash(find /Users/ramki/Desktop/untitled folder/Portfolio -maxdepth 1 -name tailwind* -o -name postcss*)",
-      "Bash(/opt/homebrew/bin/node --version)",
-      "Read(//opt/homebrew/lib/node_modules/npm/bin/**)",
-      "Bash(/opt/homebrew/bin/npm --version)",
-      "Bash(PATH=\"/opt/homebrew/bin:$PATH\" npm install lenis)",
-      "Bash(PATH=\"/opt/homebrew/bin:$PATH\" npx tsc --noEmit --pretty)",
-      "Bash(echo $PATH)",
-      "Bash(source ~/.zshrc)",
-      "Read(//usr/local/**)",
-      "Read(//opt/homebrew/Cellar/node/25.8.0/bin/**)",
-      "Bash(mdfind -name node)",
-      "Bash(grep -E '/bin/node$')",
+      "Bash(export PATH=\"/usr/local/bin:/opt/homebrew/bin:$HOME/.nvm/versions/node/*/bin:$PATH\")",
       "Bash(export PATH=\"/opt/homebrew/bin:$PATH\")",
-      "Bash(export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\")"
+      "mcp__Claude_Preview__preview_start",
+      "Bash(python3 -c \"from PIL import Image; print\\(''Pillow available''\\)\")",
+      "Bash(PATH=\"/opt/homebrew/bin:$PATH\" npm run build)"
     ]
-  }
+  },
+  "disabledMcpjsonServers": [
+    "claude-flow"
+  ]
 }
