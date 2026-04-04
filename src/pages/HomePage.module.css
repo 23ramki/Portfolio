@@ -5,7 +5,7 @@
   grid-template-columns: 1fr auto;
   gap: 3.5rem;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .heroContent {
