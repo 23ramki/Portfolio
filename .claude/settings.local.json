@@ -8,7 +8,8 @@
       "Bash(export PATH=\"/opt/homebrew/bin:$PATH\")",
       "mcp__Claude_Preview__preview_start",
       "Bash(python3 -c \"from PIL import Image; print\\(''Pillow available''\\)\")",
-      "Bash(PATH=\"/opt/homebrew/bin:$PATH\" npm run build)"
+      "Bash(PATH=\"/opt/homebrew/bin:$PATH\" npm run build)",
+      "Bash(pip3 install:*)"
     ]
   },
   "disabledMcpjsonServers": [
