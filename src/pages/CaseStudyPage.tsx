@@ -124,15 +124,19 @@ export default function CaseStudyPage() {
               <h2>Explore</h2>
               <div className={styles.docLinks}>
                 {study.liveLinks.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={styles.docLink}
-                  >
-                    {link.label} ↗
-                  </a>
+                  <div key={link.href}>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={styles.docLink}
+                    >
+                      {link.label} ↗
+                    </a>
+                    {link.note && (
+                      <p className={styles.linkNote}>{link.note}</p>
+                    )}
+                  </div>
                 ))}
               </div>
             </section>

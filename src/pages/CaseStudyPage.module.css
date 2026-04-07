@@ -68,6 +68,15 @@
   text-decoration: underline;
 }
 
+.linkNote {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin: 0.25rem 0 0.4rem;
+  line-height: 1.45;
+  font-style: italic;
+  max-width: 600px;
+}
+
 .actions {
   display: flex;
   gap: 0.85rem;

@@ -62,6 +62,7 @@ export interface Experience {
 export interface DocumentLink {
   label: string
   href: string
+  note?: string   // Optional warning or disclaimer shown below the link
 }
 
 // ─── Case study projects ──────────────────────────────────

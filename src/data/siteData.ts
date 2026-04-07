@@ -64,7 +64,7 @@ export const skills: Skill[] = [
   },
   {
     title: 'Technical Foundations',
-    text: 'Relational Databases, Data Modeling, Python (pandas), R, Jupyter Notebooks',
+    text: 'Python (pandas), R, React, TypeScript, Streamlit, SQLite, Relational Databases, Data Modeling, Web Scraping (BeautifulSoup), Jupyter Notebooks',
     icon: '⚙️',
   },
   {
@@ -74,8 +74,13 @@ export const skills: Skill[] = [
   },
   {
     title: 'ML & Data Science',
-    text: 'Predictive Modeling, Classification & Regression, XGBoost, Random Forest, Feature Engineering, PCA',
+    text: 'Predictive Modeling, Classification & Regression, XGBoost, Random Forest, Feature Engineering, PCA, SHAP Explainability',
     icon: '🤖',
+  },
+  {
+    title: 'GenAI',
+    text: 'Google Gemini API, Claude Code, Prompt Engineering, LLM Integration, AI-Powered Automation, Vite, Vercel, FPDF2',
+    icon: '✨',
   },
 ]
 
@@ -319,6 +324,61 @@ export const caseStudies: CaseStudy[] = [
     contactSubject: 'DoorDash Product Strategy Case Study Discussion',
   },
   {
+    slug: 'portfolio-website',
+    title: 'Portfolio Website',
+    summary:
+      'Designed and built a responsive, single-page portfolio from scratch using React 19, TypeScript, and Vite, with animated sections, a magnetic cursor, dark/light theming, and a contact form powered by Web3Forms, deployed on Vercel.',
+    tags: ['React', 'TypeScript', 'Vite', 'Vercel', 'Web3Forms'],
+    highlight: 'Fully responsive, animated portfolio with dark/light theming and live contact form.',
+    problem:
+      'Needed a polished, centralized place to present case studies, certifications, work experience, and downloadable project documents in a way that reflects both analytical depth and frontend capability.',
+    approach: [
+      'Structured all content in a single typed data file (siteData.ts) so every section pulls from one source of truth, making updates fast and consistent.',
+      'Built reusable components for case study cards, skill marquees, timeline entries, and document cards, all driven by TypeScript interfaces for type safety.',
+      'Added scroll-triggered animations, a magnetic cursor effect, and a tilt card interaction layer to create a modern, engaging browsing experience.',
+      'Implemented dark and light theme support with a global context provider and CSS variables for seamless toggling.',
+      'Integrated Web3Forms for a serverless contact form that delivers messages directly to email without a backend.',
+    ],
+    results: [
+      'Live portfolio site that consolidates all projects, certifications, and experience into a single, easy-to-navigate page.',
+      'Fully responsive across desktop, tablet, and mobile breakpoints.',
+      'Dark/light theme toggle with persistent preference support.',
+      'Contact form works out of the box with no server infrastructure, reducing maintenance overhead to zero.',
+    ],
+    documents: [],
+    contactSubject: 'Portfolio Website Discussion',
+  },
+  {
+    slug: 'job-eligibility-engine',
+    title: 'Job Eligibility Engine & Automated CRM',
+    summary:
+      'Built an LLM-powered Job CRM using Python, Streamlit, and Google Gemini that scrapes job postings from any URL, runs a deep fit analysis against the candidate\'s master resume, and generates ATS-optimized, one-page tailored resumes and cover letters with zero fabricated content.',
+    tags: ['Python', 'Streamlit', 'Gemini', 'SQLite', 'BeautifulSoup', 'FPDF2'],
+    highlight: 'Generates ATS-optimized resumes and cover letters strictly from real experience, with a Kanban pipeline to track applications.',
+    problem:
+      'Job seekers spend hours manually reading job descriptions, comparing requirements against their own experience, and rewriting resumes for each application. The process is repetitive, error-prone, and often results in either underselling relevant qualifications or accidentally overstating them. There is also no centralized way to track multiple applications across different stages.',
+    approach: [
+      'Built a one-click job extraction pipeline using BeautifulSoup for scraping and Gemini for structured field extraction (title, company, location, salary, description) from any LinkedIn or Indeed URL.',
+      'Designed a Kanban-style application tracker backed by SQLite, with search, filtering by status and visa sponsorship, and per-job notes, so all applications live in one place.',
+      'Implemented a multi-step AI tailoring workflow: Gemini first analyzes the fit between the master resume and the job description, surfaces a scored breakdown of strong matches and gaps, and asks the candidate targeted clarifying questions before generating anything.',
+      'Enforced a strict zero-fabrication policy across all LLM prompts, every skill, metric, and claim in the tailored resume must trace back to the master resume or the candidate\'s own answers, with no invented content.',
+      'Added a live markdown editor with side-by-side preview and a conversational AI edit mode, so the candidate can refine the generated resume by chatting with Gemini (e.g., "make the summary more concise" or "move Python to the top").',
+      'Generates downloadable one-page PDF resumes and cover letters using FPDF2, with clean formatting, ATS-safe structure, and automatic page enforcement.',
+    ],
+    results: [
+      'End-to-end pipeline from job URL to downloadable tailored resume and cover letter, reducing per-application prep time from hours to minutes.',
+      'Kanban board with four pipeline stages (New, Applied, Interviewing, Rejected) for centralized application tracking.',
+      'Fit analysis with scored match breakdown and iterative clarifying questions, so the generated resume is grounded in the candidate\'s actual experience.',
+      'Conversational resume editor lets users refine output in natural language without regenerating from scratch.',
+    ],
+    documents: [],
+    liveLinks: [
+      { label: 'GitHub Repository', href: 'https://github.com/23ramki/job-eligibility-engine' },
+      { label: 'Streamlit App', href: 'https://job-eligibility-engine.streamlit.app/', note: 'This is just a representation of what it would look like once fully setup, it doesn\'t have any of the functionalities required for the project to work fully.' },
+    ],
+    contactSubject: 'Job Eligibility Engine Discussion',
+  },
+  {
     slug: 'crm-process-automation',
     title: 'CRM Process Automation & Security Configuration',
     summary:
@@ -405,6 +465,21 @@ export const projectDocuments: ProjectDocument[] = [
     links: [
       { label: 'Open Strategy PDF', href: '/assets/DoorDash_Delivering_Convenience.pdf' },
       { label: 'Open Presentation PDF', href: '/assets/Doordash_Presentation.pdf' },
+    ],
+  },
+  {
+    title: 'Portfolio Website',
+    description:
+      'Responsive single-page portfolio built with React 19, TypeScript, and Vite, featuring animated sections, dark/light theming, and a Web3Forms contact form.',
+    links: [],
+  },
+  {
+    title: 'Job Eligibility Engine & Automated CRM',
+    description:
+      'LLM-powered Streamlit app that scrapes job postings, runs fit analysis with Gemini, and generates ATS-optimized tailored resumes and cover letters with zero fabrication, plus a Kanban pipeline for tracking applications.',
+    links: [
+      { label: 'GitHub Repository', href: 'https://github.com/23ramki/job-eligibility-engine' },
+      { label: 'Streamlit App', href: 'https://job-eligibility-engine.streamlit.app/' },
     ],
   },
 ]

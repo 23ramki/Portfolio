@@ -9,7 +9,14 @@
       "mcp__Claude_Preview__preview_start",
       "Bash(python3 -c \"from PIL import Image; print\\(''Pillow available''\\)\")",
       "Bash(PATH=\"/opt/homebrew/bin:$PATH\" npm run build)",
-      "Bash(pip3 install:*)"
+      "Bash(pip3 install:*)",
+      "mcp__code-review-graph__build_or_update_graph_tool",
+      "mcp__code-review-graph__query_graph_tool",
+      "mcp__code-review-graph__get_impact_radius_tool",
+      "mcp__code-review-graph__get_affected_flows_tool",
+      "Bash(python3:*)",
+      "Bash(export PATH=\"/usr/local/bin:/opt/homebrew/bin:$PATH\")",
+      "Bash(find /tmp/job-eligibility-engine/ -name public_template -o -name public*)"
     ]
   },
   "disabledMcpjsonServers": [
