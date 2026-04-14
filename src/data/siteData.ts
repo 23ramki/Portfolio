@@ -87,6 +87,14 @@ export const skills: Skill[] = [
 // ─── Experience ───────────────────────────────────────────
 export const experiences: Experience[] = [
   {
+    role: 'MS, Business Analytics & AI | University of Texas at Dallas',
+    timeline: 'Jan 2024 – Dec 2025',
+    text: 'Full-time graduate program. The ML projects, Tableau work, and most of the case studies on this site were built during this period, alongside coursework in predictive modeling, BI architecture, and applied AI.',
+    bullets: [
+      'Served as a certified peer mentor for the MS Business Analytics & AI cohort.',
+    ],
+  },
+  {
     role: 'Revenue Operations & Analytics Analyst | Orange Care Solutions',
     timeline: 'Oct 2022 - Jan 2024',
     text: 'Delivered structured monthly KPI performance reviews to Dealer Principals and Directors across 70+ OEM-approved dealership service centers.',
