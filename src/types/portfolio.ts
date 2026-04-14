@@ -78,6 +78,8 @@ export interface CaseStudy {
   documents: DocumentLink[]  // Nested type! An array of DocumentLink objects
   liveLinks?: DocumentLink[] // Optional external links (Tableau, GitHub, etc.)
   contactSubject: string
+  featured?: boolean        // Pin to top of grid with full-width treatment
+  preview?: string          // URL to a thumbnail/screenshot shown in the card band
 }
 
 // ─── Project documents section ────────────────────────────

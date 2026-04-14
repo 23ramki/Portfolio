@@ -5,6 +5,9 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
+        <p className={styles.tagline}>
+          Built with React and TypeScript. Open to business analyst, revenue ops, and data roles.
+        </p>
         <div className={styles.social}>
           <a
             href={siteMeta.linkedin}

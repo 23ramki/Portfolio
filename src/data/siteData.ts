@@ -31,7 +31,7 @@ export const hero: HeroContent = {
   eyebrow: 'Business Analyst Portfolio',
   title: "I'm Adithya Ramakrishnan. I turn data into decisions that drive growth.",
   summary:
-    "I've spent the last 3+ years building KPI dashboards and running performance reviews for B2B recurring revenue operations across 70+ locations. I focus on making the data credible, the decisions faster, and the stakeholder conversations sharper.",
+    "3+ years of KPI dashboards, performance reviews, and revenue operations across 70+ locations. I make the data credible and the decisions faster.",
 }
 
 // ─── About ────────────────────────────────────────────────
@@ -118,6 +118,8 @@ export const experiences: Experience[] = [
 export const caseStudies: CaseStudy[] = [
   {
     slug: 'telco-customer-churn',
+    featured: true,
+    preview: 'https://public.tableau.com/static/images/Te/Telco_17745732908030/QuadrantAnalysis/1.png',
     title: 'Telco Customer Churn Analysis',
     summary:
       'Analyzed a 7,000+ customer dataset using Python and SQL to uncover a 26.5% churn rate, then built an interactive Tableau dashboard with a quadrant risk matrix and dynamic metric swapper for executive-ready exploration.',
@@ -172,6 +174,7 @@ export const caseStudies: CaseStudy[] = [
       { label: 'Streamlit App', href: 'https://telco-churn-predictionn-avveaen4nsz44zcyinqgsa.streamlit.app/' },
       { label: 'GitHub Repository', href: 'https://github.com/23ramki/telco-churn-prediction' },
     ],
+    preview: '/assets/previews/telco-churn-prediction.svg',
     contactSubject: 'Telco Churn Prediction ML Pipeline Discussion',
   },
   {
@@ -376,6 +379,7 @@ export const caseStudies: CaseStudy[] = [
       { label: 'GitHub Repository', href: 'https://github.com/23ramki/job-eligibility-engine' },
       { label: 'Streamlit App', href: 'https://job-eligibility-engine.streamlit.app/', note: 'This is just a representation of what it would look like once fully setup, it doesn\'t have any of the functionalities required for the project to work fully.' },
     ],
+    preview: '/assets/previews/job-eligibility-engine.svg',
     contactSubject: 'Job Eligibility Engine Discussion',
   },
   {

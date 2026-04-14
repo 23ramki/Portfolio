@@ -18,7 +18,6 @@ import TimelineItem from '../components/TimelineItem'
 import CaseStudyCard from '../components/CaseStudyCard'
 import ContactForm from '../components/ContactForm'
 import AnimatedSection from '../components/AnimatedSection'
-import SkillMarquee from '../components/SkillMarquee'
 import MagneticButton from '../components/MagneticButton'
 import styles from './HomePage.module.css'
 
@@ -161,6 +160,17 @@ export default function HomePage() {
           {/* ─── Hero ─── */}
           <section className={`${styles.hero} container`}>
             <div className={styles.heroContent}>
+              {/* Availability badge */}
+              <motion.div
+                className={styles.availabilityBadge}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05, duration: 0.4, ease: smooth }}
+              >
+                <span className={styles.badgeDot} />
+                Open to full-time roles
+              </motion.div>
+
               <motion.h1
                 className={styles.title}
                 style={{ perspective: 600 }}
@@ -199,14 +209,23 @@ export default function HomePage() {
                 >
                   Download Resume
                 </MagneticButton>
-                <MagneticButton
-                  className={styles.btnSecondary}
-                  href={siteMeta.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
+              </motion.div>
+
+              {/* Scroll cue */}
+              <motion.div
+                className={styles.scrollCue}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.3, duration: 0.6, ease: smooth }}
+              >
+                <motion.span
+                  className={styles.scrollCueArrow}
+                  animate={{ y: [0, 7, 0] }}
+                  transition={{ repeat: Infinity, duration: 1.7, ease: 'easeInOut' }}
                 >
-                  LinkedIn Profile
-                </MagneticButton>
+                  ↓
+                </motion.span>
+                scroll
               </motion.div>
             </div>
 
@@ -262,10 +281,11 @@ export default function HomePage() {
             </AnimatedSection>
             <AnimatedSection delay={0.15} direction="up" distance={50} scale={0.98}>
               <div className={styles.aboutText}>
-                {about.paragraphs.map((p) => (
+                {about.paragraphs.slice(0, -1).map((p) => (
                   <p key={p.slice(0, 30)}>{p}</p>
                 ))}
               </div>
+              <p className={styles.aboutCallout}>{about.paragraphs[about.paragraphs.length - 1]}</p>
             </AnimatedSection>
           </section>
 
@@ -274,7 +294,6 @@ export default function HomePage() {
             <AnimatedSection direction="up" distance={60} scale={0.97}>
               <SectionHeading title="Skills" />
             </AnimatedSection>
-            <SkillMarquee />
             <motion.div
               className={styles.skillsGrid}
               variants={staggerContainer}
@@ -320,8 +339,12 @@ export default function HomePage() {
               viewport={{ once: true, margin: '-60px' }}
             >
               {caseStudies.map((study) => (
-                <motion.div key={study.slug} variants={staggerItem}>
-                  <CaseStudyCard study={study} />
+                <motion.div
+                  key={study.slug}
+                  variants={staggerItem}
+                  style={study.featured ? { gridColumn: '1 / -1' } : undefined}
+                >
+                  <CaseStudyCard study={study} featured={study.featured} />
                 </motion.div>
               ))}
             </motion.div>
@@ -442,7 +465,7 @@ export default function HomePage() {
             <AnimatedSection direction="up" distance={60} scale={0.97}>
               <SectionHeading
                 title="Beyond Work"
-                subtitle="When I'm not working with data, I'm out capturing the world through my lens."
+                subtitle="Not everything needs a KPI. Some recent shots."
               />
             </AnimatedSection>
             <AnimatedSection delay={0.1} direction="none" scale={0.95} duration={1.1} clipReveal>
@@ -497,10 +520,23 @@ export default function HomePage() {
             <AnimatedSection direction="up" distance={60} scale={0.97}>
               <SectionHeading
                 title="Contact"
-                subtitle="Actively seeking business analyst and revenue operations roles across the US. Let's connect."
+                subtitle="Drop me a line."
               />
             </AnimatedSection>
-            <AnimatedSection delay={0.12} direction="up" distance={40} scale={0.98}>
+            <AnimatedSection delay={0.1} direction="up" distance={30} scale={0.99}>
+              <div className={styles.contactIntro}>
+                <p>
+                  If you're hiring for a business analyst, revenue ops, or data role, I'd love to hear from you. Same goes if you just want to talk about the work. I'm based in the Greater Seattle Area and open to anywhere in the US.
+                </p>
+                <div className={styles.contactMeta}>
+                  <span className={styles.contactMetaItem}>Greater Seattle Area</span>
+                  <span className={styles.contactMetaItem}>Available immediately</span>
+                  <span className={styles.contactMetaItem}>Open to all US locations</span>
+                  <span className={styles.contactMetaItem}>US work authorized</span>
+                </div>
+              </div>
+            </AnimatedSection>
+            <AnimatedSection delay={0.2} direction="up" distance={40} scale={0.98}>
               <ContactForm />
             </AnimatedSection>
           </section>

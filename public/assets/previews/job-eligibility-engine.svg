@@ -1,0 +1,94 @@
+<svg width="800" height="360" xmlns="http://www.w3.org/2000/svg" font-family="'Courier New', monospace">
+  <!-- Background -->
+  <rect width="800" height="360" fill="#0a1a1f"/>
+
+  <!-- Subtle grid -->
+  <defs>
+    <pattern id="grid2" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0f2a33" stroke-width="0.5"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="360" fill="url(#grid2)"/>
+
+  <!-- Header bar -->
+  <rect width="800" height="44" fill="#0d2129"/>
+  <circle cx="20" cy="22" r="5" fill="#ff5f56"/>
+  <circle cx="36" cy="22" r="5" fill="#ffbd2e"/>
+  <circle cx="52" cy="22" r="5" fill="#27c93f"/>
+  <text x="80" y="27" font-size="12" fill="#38bdf8" letter-spacing="1">JOB ELIGIBILITY ENGINE</text>
+  <text x="750" y="27" font-size="11" fill="#0e7490" text-anchor="end">Gemini · SQLite</text>
+
+  <!-- Left panel: Job card -->
+  <rect x="20" y="60" width="340" height="130" rx="8" fill="#0d2129" stroke="#0e4a5e" stroke-width="1"/>
+  <text x="36" y="84" font-size="9" fill="#38bdf8" letter-spacing="2">JOB POSTING</text>
+  <text x="36" y="104" font-size="13" fill="#e2e8f0" font-weight="bold">Senior Business Analyst</text>
+  <text x="36" y="120" font-size="10" fill="#64748b">Microsoft · Redmond, WA</text>
+  <line x1="36" y1="130" x2="344" y2="130" stroke="#0f2a33" stroke-width="1"/>
+  <!-- Skill pills -->
+  <rect x="36" y="140" width="42" height="18" rx="4" fill="#0e4a5e"/>
+  <text x="57" y="153" font-size="9" fill="#38bdf8" text-anchor="middle">SQL</text>
+  <rect x="86" y="140" width="62" height="18" rx="4" fill="#0e4a5e"/>
+  <text x="117" y="153" font-size="9" fill="#38bdf8" text-anchor="middle">Tableau</text>
+  <rect x="156" y="140" width="76" height="18" rx="4" fill="#0e4a5e"/>
+  <text x="194" y="153" font-size="9" fill="#38bdf8" text-anchor="middle">Salesforce</text>
+  <rect x="240" y="140" width="50" height="18" rx="4" fill="#0e4a5e"/>
+  <text x="265" y="153" font-size="9" fill="#38bdf8" text-anchor="middle">Power BI</text>
+  <!-- Salary -->
+  <text x="36" y="178" font-size="10" fill="#4ade80">$95,000 – $130,000</text>
+
+  <!-- Center: Fit score -->
+  <rect x="376" y="60" width="196" height="130" rx="8" fill="#0d2129" stroke="#0e4a5e" stroke-width="1"/>
+  <text x="474" y="84" font-size="9" fill="#38bdf8" text-anchor="middle" letter-spacing="2">MATCH SCORE</text>
+  <text x="474" y="140" font-size="52" fill="#4ade80" text-anchor="middle" font-weight="bold">87</text>
+  <text x="474" y="162" font-size="11" fill="#4ade80" text-anchor="middle">% FIT</text>
+  <rect x="400" y="170" width="148" height="8" rx="4" fill="#0e4a5e"/>
+  <rect x="400" y="170" width="129" height="8" rx="4" fill="#4ade80"/>
+
+  <!-- Right: Resume actions -->
+  <rect x="588" y="60" width="192" height="130" rx="8" fill="#0d2129" stroke="#0e4a5e" stroke-width="1"/>
+  <text x="684" y="84" font-size="9" fill="#38bdf8" text-anchor="middle" letter-spacing="2">RESUME</text>
+  <rect x="604" y="94" width="160" height="22" rx="4" fill="#4ade8022" stroke="#4ade80" stroke-width="1"/>
+  <text x="684" y="109" font-size="10" fill="#4ade80" text-anchor="middle">✓ ATS-Optimized</text>
+  <rect x="604" y="124" width="160" height="22" rx="4" fill="#0e4a5e"/>
+  <text x="684" y="139" font-size="10" fill="#38bdf8" text-anchor="middle">Download PDF</text>
+  <rect x="604" y="154" width="160" height="22" rx="4" fill="#0e4a5e"/>
+  <text x="684" y="169" font-size="10" fill="#38bdf8" text-anchor="middle">Edit with AI</text>
+
+  <!-- Kanban pipeline -->
+  <text x="20" y="218" font-size="9" fill="#38bdf8" letter-spacing="2">APPLICATION PIPELINE</text>
+
+  <!-- Kanban columns -->
+  <rect x="20" y="228" width="174" height="110" rx="6" fill="#0d2129" stroke="#0e4a5e" stroke-width="1"/>
+  <rect x="20" y="228" width="174" height="22" rx="6" fill="#0e4a5e"/>
+  <rect x="20" y="244" width="174" height="6" fill="#0e4a5e"/>
+  <text x="107" y="243" font-size="9" fill="#94a3b8" text-anchor="middle" letter-spacing="1">NEW  ·  4</text>
+  <rect x="32" y="260" width="150" height="18" rx="3" fill="#0f2a33"/>
+  <text x="107" y="272" font-size="8" fill="#64748b" text-anchor="middle">Senior BA · Microsoft</text>
+  <rect x="32" y="282" width="150" height="18" rx="3" fill="#0f2a33"/>
+  <text x="107" y="294" font-size="8" fill="#64748b" text-anchor="middle">Data Analyst · Amazon</text>
+  <rect x="32" y="304" width="150" height="18" rx="3" fill="#0f2a33"/>
+  <text x="107" y="316" font-size="8" fill="#64748b" text-anchor="middle">RevOps Analyst · Stripe</text>
+
+  <rect x="204" y="228" width="174" height="110" rx="6" fill="#0d2129" stroke="#0e4a5e" stroke-width="1"/>
+  <rect x="204" y="228" width="174" height="22" rx="6" fill="#0e4a5e"/>
+  <rect x="204" y="244" width="174" height="6" fill="#0e4a5e"/>
+  <text x="291" y="243" font-size="9" fill="#94a3b8" text-anchor="middle" letter-spacing="1">APPLIED  ·  3</text>
+  <rect x="216" y="260" width="150" height="18" rx="3" fill="#0f2a33"/>
+  <text x="291" y="272" font-size="8" fill="#64748b" text-anchor="middle">BI Analyst · Salesforce</text>
+  <rect x="216" y="282" width="150" height="18" rx="3" fill="#0f2a33"/>
+  <text x="291" y="294" font-size="8" fill="#64748b" text-anchor="middle">Strategy Analyst · Adobe</text>
+
+  <rect x="388" y="228" width="174" height="110" rx="6" fill="#0d2129" stroke="#38bdf833" stroke-width="1"/>
+  <rect x="388" y="228" width="174" height="22" rx="6" fill="#0e6b7a"/>
+  <rect x="388" y="244" width="174" height="6" fill="#0e6b7a"/>
+  <text x="475" y="243" font-size="9" fill="#e2e8f0" text-anchor="middle" letter-spacing="1">INTERVIEWING  ·  1</text>
+  <rect x="400" y="260" width="150" height="18" rx="3" fill="#0f3a44"/>
+  <text x="475" y="272" font-size="8" fill="#38bdf8" text-anchor="middle">RevOps Mgr · HubSpot</text>
+
+  <rect x="572" y="228" width="208" height="110" rx="6" fill="#0d2129" stroke="#0e4a5e" stroke-width="1"/>
+  <rect x="572" y="228" width="208" height="22" rx="6" fill="#0e4a5e"/>
+  <rect x="572" y="244" width="208" height="6" fill="#0e4a5e"/>
+  <text x="676" y="243" font-size="9" fill="#94a3b8" text-anchor="middle" letter-spacing="1">REJECTED  ·  2</text>
+  <rect x="584" y="260" width="184" height="18" rx="3" fill="#0f2a33"/>
+  <text x="676" y="272" font-size="8" fill="#475569" text-anchor="middle">Data Analyst · Meta</text>
+</svg>

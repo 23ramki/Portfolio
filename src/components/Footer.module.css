@@ -33,6 +33,16 @@
   color: var(--primary);
 }
 
+.tagline {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-style: italic;
+  max-width: 480px;
+  text-align: center;
+  line-height: 1.5;
+}
+
 .copy {
   margin: 0;
   color: var(--muted);

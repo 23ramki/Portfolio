@@ -61,8 +61,8 @@
   --stat-bg: rgba(20, 26, 20, 0.9);
   --btn-secondary-bg: rgba(20, 26, 20, 0.72);
   --footer-border: rgba(42, 47, 42, 0.6);
-  --glow-primary: rgba(200, 255, 0, 0.12);
-  --glow-accent: rgba(200, 255, 0, 0.06);
+  --glow-primary: rgba(200, 255, 0, 0.22);
+  --glow-accent: rgba(200, 255, 0, 0.10);
   --drawer-bg: #141a14;
 }
 

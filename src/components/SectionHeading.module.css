@@ -23,6 +23,11 @@
   border-radius: 2px;
   transform-origin: left;
   will-change: transform;
+  transition: box-shadow var(--duration-fast) ease;
+}
+
+[data-theme="dark"] .accent {
+  box-shadow: 0 0 8px rgba(200, 255, 0, 0.55), 0 0 22px rgba(200, 255, 0, 0.20);
 }
 
 .subtitle {
