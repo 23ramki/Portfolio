@@ -165,21 +165,28 @@ export default function HomePage() {
                 className={styles.availabilityBadge}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.05, duration: 0.4, ease: smooth }}
+                transition={{ delay: 0.0, duration: 0.4, ease: smooth }}
               >
                 <span className={styles.badgeDot} />
                 Open to full-time roles
               </motion.div>
 
+              {/* Eyebrow */}
+              <motion.p
+                className={styles.eyebrow}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05, duration: 0.4, ease: smooth }}
+              >
+                Hi, I'm {siteMeta.name}.
+              </motion.p>
+
               <motion.h1
                 className={styles.title}
                 style={{ perspective: 600 }}
               >
-                <div>
-                  <SplitText text="I turn data into decisions that drive growth." delay={0.1} />
-                </div>
                 <span>
-                  <SplitText text={`I'm ${siteMeta.name}.`} delay={0.45} />
+                  <SplitText text="I build systems that drive business decisions." delay={0.1} />
                 </span>
               </motion.h1>
 
@@ -526,7 +533,7 @@ export default function HomePage() {
             <AnimatedSection delay={0.1} direction="up" distance={30} scale={0.99}>
               <div className={styles.contactIntro}>
                 <p>
-                  If you're hiring for a business analyst, revenue ops, or data role, I'd love to hear from you. Same goes if you just want to talk about the work. I'm based in the Greater Seattle Area and open to anywhere in the US.
+                  If you're building something at the intersection of AI and revenue and need someone who can scope it, help ship it, and explain it to the people who need to sign off, I want to hear about it. Same goes if you just want to talk about the work.
                 </p>
                 <div className={styles.contactMeta}>
                   <span className={styles.contactMetaItem}>Greater Seattle Area</span>

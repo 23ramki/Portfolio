@@ -15,12 +15,11 @@
 }
 
 .eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--muted);
+  letter-spacing: 0.02em;
+  color: var(--primary);
   font-weight: 600;
   margin: 0;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 .title {

@@ -62,8 +62,8 @@ export default function Header() {
         <div className={`container ${styles.navWrap}`}>
           <Link className={styles.brand} to="/" onClick={close} aria-label="Adithya Ramakrishnan – Home">
             <img
-              className={styles.brandLogo}
-              src={theme === 'dark' ? '/assets/Dark Mode.png' : '/assets/Light Mode.png'}
+              className={`${styles.brandLogo}${theme === 'dark' ? ` ${styles.brandLogoDark}` : ''}`}
+              src="/assets/Light Mode.png"
               alt="AR"
             />
           </Link>
