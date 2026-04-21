@@ -1,24 +1,35 @@
 {
   "permissions": {
     "allow": [
-      "mcp__ruflo__swarm_init",
-      "mcp__ruflo__agent_spawn",
-      "Bash(npm run:*)",
-      "Bash(export PATH=\"/usr/local/bin:/opt/homebrew/bin:$HOME/.nvm/versions/node/*/bin:$PATH\")",
-      "Bash(export PATH=\"/opt/homebrew/bin:$PATH\")",
-      "mcp__Claude_Preview__preview_start",
-      "Bash(python3 -c \"from PIL import Image; print\\(''Pillow available''\\)\")",
-      "Bash(PATH=\"/opt/homebrew/bin:$PATH\" npm run build)",
-      "Bash(pip3 install:*)",
       "mcp__code-review-graph__build_or_update_graph_tool",
-      "mcp__code-review-graph__query_graph_tool",
-      "mcp__code-review-graph__get_impact_radius_tool",
-      "mcp__code-review-graph__get_affected_flows_tool",
-      "Bash(python3:*)",
-      "Bash(export PATH=\"/usr/local/bin:/opt/homebrew/bin:$PATH\")",
-      "Bash(find /tmp/job-eligibility-engine/ -name public_template -o -name public*)"
+      "mcp__code-review-graph__get_architecture_overview_tool",
+      "mcp__code-review-graph__list_communities_tool",
+      "Bash(npm install *)",
+      "Bash(echo \"EXIT:$?\")",
+      "Bash(npm run *)",
+      "Bash(python3)",
+      "Bash(pip install *)",
+      "Bash(pip3 install *)",
+      "Bash(npx tsc *)",
+      "Bash(npx vite *)",
+      "Read(//tmp/**)",
+      "Bash(node_modules/.bin/vite build *)",
+      "Bash(node_modules/.bin/tsc --noEmit)",
+      "mcp__ide__getDiagnostics",
+      "Bash(git stash *)",
+      "Bash(echo \"EXIT: $?\")",
+      "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" status)",
+      "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" diff --stat src/)",
+      "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" add src/components/Header.module.css src/components/Header.tsx src/data/siteData.ts src/pages/HomePage.module.css src/pages/HomePage.tsx)",
+      "Bash(git -C '/Users/ramki/Desktop/untitled folder/Portfolio' commit -m ' *)",
+      "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" push origin main)",
+      "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" log --oneline -3)",
+      "Bash(git -C \"/Users/ramki/Desktop/untitled folder/Portfolio\" remote -v)"
     ]
   },
+  "enabledMcpjsonServers": [
+    "code-review-graph"
+  ],
   "disabledMcpjsonServers": [
     "claude-flow"
   ]
