@@ -256,12 +256,16 @@ export default function HomePage() {
                 alt={siteMeta.name}
                 width={340}
                 height={340}
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
                 style={{
                   rotateX: smoothRotateX,
                   rotateY: smoothRotateY,
                   scale: smoothScale,
                   boxShadow: photoShadow,
-                }}
+                  userSelect: 'none',
+                  WebkitUserDrag: 'none',
+                } as React.CSSProperties}
               />
             </motion.div>
           </section>
