@@ -88,7 +88,7 @@ export const skills: Skill[] = [
 export const experiences: Experience[] = [
   {
     role: 'MS, Business Analytics & AI | University of Texas at Dallas',
-    timeline: 'Jan 2024 – Dec 2025',
+    timeline: 'Jan 2024 – Dec 2025 (Graduated)',
     text: 'Full-time graduate program. The ML pipelines, LLM tooling, Salesforce configuration, and most of the case studies on this site were built here, alongside coursework in predictive modeling, BI architecture, and applied AI.',
     bullets: [
       'Served as a certified peer mentor for the MS Business Analytics & AI cohort.',
@@ -505,7 +505,7 @@ export const education: Education = {
     {
       name: 'MS in Business Analytics & AI',
       institution: 'University of Texas at Dallas',
-      timeline: 'Jan 2024 – Dec 2025',
+      timeline: 'Jan 2024 – Dec 2025 (Graduated)',
       isMasters: true,
       highlights: [
         'Graduate Certificates: Business Decision Analytics & Analytics for Managers',
