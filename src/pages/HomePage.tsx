@@ -265,7 +265,7 @@ export default function HomePage() {
                   boxShadow: photoShadow,
                   userSelect: 'none',
                   WebkitUserDrag: 'none',
-                } as React.CSSProperties}
+                } as any}
               />
             </motion.div>
           </section>
