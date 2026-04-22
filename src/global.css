@@ -189,13 +189,13 @@ main, header, footer {
 
 @media (min-width: 1400px) {
   :root {
-    --maxw: 1100px;
+    --maxw: 1240px;
   }
 }
 
 @media (min-width: 1800px) {
   :root {
-    --maxw: 1200px;
+    --maxw: 1400px;
   }
 }
 

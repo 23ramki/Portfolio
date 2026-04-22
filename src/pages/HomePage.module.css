@@ -756,14 +756,17 @@
   }
 
   .heroActions {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
     gap: 0.6rem;
+    justify-content: center;
   }
 
   .heroActions .btnPrimary,
   .heroActions .btnSecondary {
-    width: 100%;
+    flex: 1 1 0;
+    min-width: 0;
     text-align: center;
   }
 
