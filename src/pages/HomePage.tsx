@@ -1,4 +1,5 @@
 import { useState, useCallback, useRef } from 'react'
+import { useSeoMeta } from '../hooks/useSeoMeta'
 import { motion, AnimatePresence, useMotionValue, useSpring, useMotionTemplate } from 'framer-motion'
 import {
   about,
@@ -88,6 +89,13 @@ function SplitText({ text, className, delay = 0 }: { text: string; className?: s
 }
 
 export default function HomePage() {
+  useSeoMeta({
+    title: 'Adithya Ramakrishnan | Analytics Portfolio',
+    description:
+      'Revenue Operations & Analytics professional with an MS in Business Analytics & AI from UT Dallas. Specializing in Salesforce, Tableau, Python, SQL, Snowflake, and AI-driven workflow automation.',
+    canonical: 'https://adithyaramakrishnan.tech/',
+  })
+
   const [photoIndex, setPhotoIndex] = useState(0)
   const nextPhoto = useCallback(() => {
     setPhotoIndex((prev) => (prev + 1) % photos.length)
@@ -256,6 +264,8 @@ export default function HomePage() {
                 alt={siteMeta.name}
                 width={340}
                 height={340}
+                loading="eager"
+                fetchPriority="high"
                 draggable={false}
                 onContextMenu={(e) => e.preventDefault()}
                 style={{

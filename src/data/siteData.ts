@@ -24,7 +24,7 @@ export const siteMeta: SiteMeta = {
   linkedin: 'https://www.linkedin.com/in/23ramki/',
 }
 
-export const profilePhoto: string = '/assets/profile-photo.jpg'
+export const profilePhoto: string = '/assets/profile-photo.webp'
 
 // ─── Hero ─────────────────────────────────────────────────
 export const hero: HeroContent = {

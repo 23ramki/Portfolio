@@ -2,6 +2,7 @@ import { useParams, Navigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { caseStudies, siteMeta } from '../data/siteData'
 import AnimatedSection from '../components/AnimatedSection'
+import { useSeoMeta } from '../hooks/useSeoMeta'
 import styles from './CaseStudyPage.module.css'
 
 const smooth = [0.16, 1, 0.3, 1] as const
@@ -23,6 +24,29 @@ const staggerItem = {
   },
 }
 
+function CaseStudyMeta({ study }: { study: (typeof caseStudies)[number] }) {
+  const canonical = `https://adithyaramakrishnan.tech/case-studies/${study.slug}`
+  useSeoMeta({
+    title: `${study.title} | Adithya Ramakrishnan`,
+    description: study.highlight ?? study.summary.slice(0, 155),
+    canonical,
+    schema: {
+      '@context': 'https://schema.org',
+      '@type': 'CreativeWork',
+      name: study.title,
+      description: study.highlight ?? study.summary,
+      url: canonical,
+      author: {
+        '@type': 'Person',
+        name: 'Adithya Ramakrishnan',
+        url: 'https://adithyaramakrishnan.tech',
+      },
+      keywords: study.tags.join(', '),
+    },
+  })
+  return null
+}
+
 export default function CaseStudyPage() {
   const { slug } = useParams<{ slug: string }>()
   const study = caseStudies.find((s) => s.slug === slug)
@@ -33,6 +57,7 @@ export default function CaseStudyPage() {
 
   return (
     <main className={`container ${styles.page}`}>
+      <CaseStudyMeta study={study} />
       {/* Hero area */}
       <motion.div
         className={styles.hero}

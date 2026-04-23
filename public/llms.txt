@@ -1,0 +1,49 @@
+# Adithya Ramakrishnan — Analytics Portfolio
+
+> Revenue Operations & Analytics professional with an MS in Business Analytics & AI from the University of Texas at Dallas. I build systems that close the gap between what technology can do and what a business needs to decide. Specializing in Salesforce, Tableau, Python, SQL, Snowflake, and AI-driven workflow automation.
+
+## About
+
+- Location: Greater Seattle Area
+- Open to: Full-time roles in AI implementation, revenue operations, or pre-sales
+- Education: MS Business Analytics & AI — University of Texas at Dallas (Jan 2024 – Dec 2025)
+- Certifications: Salesforce Certified Platform Administrator, SnowPro Associate
+
+## Case Studies
+
+- Job Eligibility Engine & Automated CRM: https://adithyaramakrishnan.tech/case-studies/job-eligibility-engine
+  Dual-LLM pipeline (Groq + Gemini) that scrapes job postings, scores resume fit, and generates ATS-optimized tailored resumes. Python, Streamlit, SQLite.
+
+- CRM Process Automation & Security Configuration: https://adithyaramakrishnan.tech/case-studies/crm-process-automation
+  Salesforce automation covering lead conversion lifecycle, validation rules, and enterprise-grade role-based security. No-code configuration.
+
+- Telco Customer Churn Analysis: https://adithyaramakrishnan.tech/case-studies/telco-customer-churn
+  Python and SQL analysis of a 7,043-customer dataset. 26.5% churn rate, Tableau dashboard with churn risk matrix. Month-to-month contracts drive 42.7% churn.
+
+- Telco Customer Churn Prediction ML Pipeline: https://adithyaramakrishnan.tech/case-studies/telco-churn-prediction
+  XGBoost model with SHAP explainability. 78% churn recall. Streamlit dashboard for real-time customer risk scoring.
+
+- Loan Repayment Risk Modeling: https://adithyaramakrishnan.tech/case-studies/loan-repayment-modeling
+  Classification models in R. Logistic Regression achieved 99.91% accuracy and 99.58% sensitivity on credit default prediction.
+
+- Amazon Last-Mile Routing Intelligence: https://adithyaramakrishnan.tech/case-studies/amazon-last-mile-routing
+  701 route-level features from 139M+ travel-time pairs. Random Forest regression R² 0.8626. Dask parallelization.
+
+- InsurCare Database Foundation: https://adithyaramakrishnan.tech/case-studies/insurcare-database-foundation
+  Data architecture for a B2C insurance platform. Six core entities, full DDL, requirements-to-schema traceability.
+
+- John Deere Leap Strategy Analysis: https://adithyaramakrishnan.tech/case-studies/john-deere-leap-strategy
+  Adoption strategy for a 500M-acre precision-ag initiative. Focused on small and mid-size farm accessibility.
+
+- Disney+ ML Growth Strategy: https://adithyaramakrishnan.tech/case-studies/disney-plus-ml-strategy
+  Strategy-to-ML decision framework covering recommendation, churn prediction, content valuation, and targeted marketing.
+
+- DoorDash Product Strategy Review: https://adithyaramakrishnan.tech/case-studies/doordash-product-strategy
+  GTM strategy analysis under margin pressure. Growth levers in experimentation speed and dasher experience design.
+
+## Contact
+
+- LinkedIn: https://www.linkedin.com/in/23ramki/
+- GitHub: https://github.com/23ramki
+- Photography: https://unsplash.com/@theadithyar
+- Email: adithyaramakrishnan2309@gmail.com
