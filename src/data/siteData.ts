@@ -31,15 +31,15 @@ export const hero: HeroContent = {
   eyebrow: 'AI Implementation & Revenue Operations',
   title: "I'm Adithya Ramakrishnan. I build systems that close the gap between what the technology can do and what the business needs to decide.",
   summary:
-    "Revenue operations, sales analytics, and a master's in Business Analytics from UT Dallas. I build systems that close the gap between what the technology can do and what the business needs to decide.",
+    "Three years across revenue operations, sales analytics, and GTM. MS in Business Analytics from UT Dallas. Built the technical layer at grad school: ML pipelines, LLM tooling, Salesforce automation, Snowflake.",
 }
 
 // ─── About ────────────────────────────────────────────────
 export const about: AboutContent = {
   paragraphs: [
     "I've worked in three different functions before grad school. Sales and marketing at Tata Hitachi, pipeline and CRM analytics at Frontier, then revenue operations at Orange Care Solutions where I ran monthly performance reviews with Dealer Principals, tracked billing cycles, and managed margin analysis for 70+ dealership service centers. Different titles, same job: make the numbers credible and the conversation worth having.",
-    "I went to UT Dallas because I kept hitting a ceiling. I could frame the business problem. I couldn't build the system. So I built that layer: ML pipelines, LLM tooling, Salesforce automation, Snowflake. Not to become an engineer. To stop needing one in the room to get something shipped.",
-    "I'm looking for roles in AI implementation, revenue operations, or pre-sales. Places where someone needs to scope what's actually buildable, translate it to the people writing the check, and stay in the room when it ships. That's the work I want.",
+    "The gap was technical. I could frame the business problem. Building the system was someone else's job. UT Dallas closed it: ML pipelines, LLM tooling, Salesforce automation, Snowflake. Not to become an engineer. To stop needing one in the room to get something shipped.",
+    "Targeting AI implementation, revenue operations, and pre-sales. The job is scoping what's buildable, translating it for the people writing the check, and staying in the room when it ships.",
   ],
 }
 
@@ -89,9 +89,9 @@ export const experiences: Experience[] = [
   {
     role: 'MS, Business Analytics & AI | University of Texas at Dallas',
     timeline: 'Jan 2024 – Dec 2025 (Graduated)',
-    text: 'Full-time graduate program. The ML pipelines, LLM tooling, Salesforce configuration, and most of the case studies on this site were built here, alongside coursework in predictive modeling, BI architecture, and applied AI.',
+    text: 'Full-time graduate program at UT Dallas. Built ML pipelines, LLM tooling, and Salesforce configuration alongside coursework in predictive modeling, BI architecture, and applied AI. Most case studies on this site came from this work.',
     bullets: [
-      'Served as a certified peer mentor for the MS Business Analytics & AI cohort.',
+      'Certified peer mentor for the MS Business Analytics & AI cohort.',
     ],
   },
   {
@@ -99,8 +99,8 @@ export const experiences: Experience[] = [
     timeline: 'Oct 2022 - Jan 2024',
     text: 'Owned revenue analytics for a B2B recurring revenue business across 70+ OEM-approved dealership service centers. Monthly performance reviews, billing cycle analysis, and margin tracking. All tied directly to what Dealer Principals and Directors would do with the numbers.',
     bullets: [
-      'Designed Tableau dashboards that translated CRM and operational data into revenue, margin, and SLA narratives for Dealer Principals and Directors. Built for the decision, not for the report.',
-      'Analyzed 30-day recurring billing cycles and technician deployment data to surface cost variance, contributing to a 12% reduction in labor cost variance across service operations.',
+      'Delivered revenue, margin, and SLA clarity to Dealer Principals and Directors through Tableau dashboards built from CRM and operational data. Designed for the decision, not the report.',
+      'Analyzed 30-day billing cycles and technician deployment patterns to surface cost variance. Labor cost variance fell 12% across service operations.',
     ],
   },
   {
@@ -108,16 +108,16 @@ export const experiences: Experience[] = [
     timeline: 'Jan 2022 - Sep 2022',
     text: 'Automated weekly revenue reporting using Excel VBA and Power Query, cutting manual data entry by 25% and stabilizing the reporting foundation that quarterly planning depended on.',
     bullets: [
-      'Monitored pipeline health and aligned Salesforce reporting logic with stakeholder definitions so forecasting conversations started from consistent data.',
-      'Ran recurring CRM data quality audits covering stage hygiene, missing fields, and definition drift, improving leadership confidence in pipeline numbers.',
+      'Aligned Salesforce reporting logic with stakeholder definitions, giving forecasting conversations a consistent data foundation.',
+      'Ran CRM data quality audits across stage hygiene, missing fields, and definition drift. Eliminated the data ambiguity that undercut leadership confidence in pipeline numbers.',
     ],
   },
   {
     role: 'Sales & Marketing Intern | Tata Hitachi',
     timeline: 'Jan 2021 - Sep 2021',
-    text: 'Analyzed segmentation and GTM data to improve campaign targeting. The work contributed to a 35% client base increase and over 200% growth in event registrations.',
+    text: 'Analyzed segmentation and GTM data to sharpen campaign targeting. Client base grew 35%. Event registrations grew over 200%.',
     bullets: [
-      'Evaluated digital touchpoints to identify friction in the sales funnel and implemented UI changes that improved customer retention.',
+      'Mapped friction across the digital sales funnel by auditing touchpoints, then implemented UI changes that improved customer retention.',
     ],
   },
 ]
@@ -129,7 +129,7 @@ export const caseStudies: CaseStudy[] = [
     featured: true,
     title: 'Job Eligibility Engine & Automated CRM',
     summary:
-      "I had a real problem: hours spent reading job descriptions, comparing requirements, and rewriting resumes for every application. I built the system to solve it. A dual-LLM pipeline that scrapes any job posting, scores resume fit, surfaces gaps, and generates an ATS-optimized tailored resume with zero fabricated content, tracked in a custom Kanban board.",
+      "Cuts per-application prep time from hours to minutes. A dual-LLM pipeline scrapes any job posting, scores resume fit, surfaces requirement gaps, and generates an ATS-optimized resume from the candidate's actual experience. Zero fabricated content, enforced at the prompt level. A custom Kanban board tracks every application through the pipeline.",
     tags: ['Python', 'Streamlit', 'Groq', 'Gemini', 'SQLite', 'BeautifulSoup', 'FPDF2'],
     highlight: 'From job URL to tailored resume in minutes. Dual-LLM routing (Groq + Gemini), drag-and-drop Kanban, and a strict zero-fabrication policy enforced at the prompt level.',
     problem:
@@ -155,6 +155,49 @@ export const caseStudies: CaseStudy[] = [
     ],
     preview: '/assets/previews/job-eligibility-engine.svg',
     contactSubject: 'Job Eligibility Engine Discussion',
+  },
+  {
+    slug: 'crm-pipeline-health-agent',
+    title: 'CRM Pipeline Health AI Agent',
+    summary:
+      "Flagged all 4 at-risk deals in a 15-deal live test without a human in the loop. I built an automated pipeline that pulls live HubSpot deals, runs each one through Gemini 2.5 Flash for a one-sentence health verdict, and fires the full report to Slack on a schedule or on-demand. No analyst needed. No manual steps.",
+    tags: ['n8n', 'HubSpot', 'Gemini', 'Slack', 'API Integration', 'Workflow Automation'],
+    highlight: 'HubSpot → Gemini 2.5 Flash → Slack. Flagged all 4 stale deals in a live test. Zero manual steps.',
+    problem:
+      "Sales teams miss at-risk deals because pipeline reviews depend on someone remembering to run them. Connecting a CRM, an LLM, and a notification layer into one reliable workflow has too many moving parts. Most teams don't have it. This pipeline closes that gap.",
+    approach: [
+      'Started with Salesforce as the CRM layer. Spent significant time diagnosing OAuth redirect failures in the self-hosted n8n environment: callback URL mismatches, token exchange errors, multiple configuration attempts. Never resolved. Pivoted to HubSpot, which uses plain Bearer token auth with no redirect flow and no callback URL required. It worked on the first try.',
+      'Configured an n8n HTTP Request node to pull all open deals from the HubSpot CRM v3 API, extracting deal name, stage, amount, close date, and description per record.',
+      'Designed a fan-out pattern where each deal is sent individually to Gemini 2.5 Flash with a targeted prompt, returning a one-sentence health verdict per deal rather than a bulk summary.',
+      'Built a Code node to aggregate all AI outputs into a single numbered, Slack-formatted report and deliver it to #pipeline-health via Incoming Webhook.',
+      'Implemented two trigger variants sharing the same core pipeline: a Schedule Trigger for recurring daily digests and a Webhook Trigger for on-demand HTTP POST execution. No duplication between the two.',
+    ],
+    results: [
+      'Gemini flagged all 4 intentionally stale deals in a 15-deal test dataset without fine-tuning. Expired close dates, stalled stages, and unresponsive contacts all identified from a single targeted prompt per deal.',
+      'Full pipeline runs live: real HubSpot deals, real Gemini API calls, real Slack delivery. Zero manual steps between trigger and report.',
+      'Two trigger modes in one codebase: schedule for daily digests, webhook for on-demand or CI/CD integration.',
+      'HubSpot chosen over Salesforce after OAuth redirect failures in self-hosted n8n. Plain Bearer token auth is the correct choice for any self-hosted environment without a public callback URL.',
+    ],
+    documents: [],
+    liveLinks: [
+      { label: 'GitHub Repository', href: 'https://github.com/23ramki/crm-health-workflow' },
+    ],
+    preview: '/assets/previews/crm-n8n-workflow.png',
+    screenshots: [
+      {
+        src: '/assets/previews/crm-n8n-workflow.png',
+        caption: 'The n8n workflow: six nodes, one direction. Schedule Trigger → HubSpot fetch → data processing → Gemini analysis → aggregation → Slack.',
+      },
+      {
+        src: '/assets/previews/crm-hubspot-deals.png',
+        caption: 'The live HubSpot deal board the pipeline reads from. 11 deals across pipeline stages, including the 4 stale ones the AI flagged.',
+      },
+      {
+        src: '/assets/previews/crm-slack-output.png',
+        caption: 'The Slack output in #pipeline-health. Each deal gets one sentence. Stale deals are called out directly.',
+      },
+    ],
+    contactSubject: 'CRM Pipeline Health AI Agent Discussion',
   },
   {
     slug: 'crm-process-automation',
@@ -212,7 +255,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'telco-churn-prediction',
-    title: 'Telco Customer Churn Prediction — ML Pipeline & Dashboard',
+    title: 'Telco Customer Churn Prediction: ML Pipeline & Dashboard',
     summary:
       'Catching 78% of churners before they leave. I built an end-to-end ML pipeline on 7,043 customers, tuned an XGBoost model with SHAP explainability, and deployed a Streamlit dashboard where retention teams can test any customer profile in real time.',
     tags: ['Python', 'XGBoost', 'SHAP', 'Streamlit', 'scikit-learn'],
@@ -244,7 +287,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'loan-repayment-modeling',
     title: 'Loan Repayment Risk Modeling',
     summary:
-      'Built and evaluated four classification models to predict loan repayment failure, with a sensitivity-first decision lens designed for the cost asymmetry of credit risk. Logistic Regression won on what actually matters.',
+      '99.91% accuracy, 99.58% sensitivity on loan repayment failure prediction. Four classification models evaluated with a sensitivity-first lens matched to the cost asymmetry of credit risk. Logistic Regression outperformed more complex models on the metric that matters: catching actual defaults.',
     tags: ['R', 'Logistic Regression', 'PCA', 'Risk Analytics'],
     highlight: '99.91% accuracy, 99.58% sensitivity. Logistic Regression outperforms more complex models on the metric that matters: catching actual defaults.',
     problem:
@@ -271,7 +314,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'amazon-last-mile-routing',
     title: 'Amazon Last-Mile Routing Intelligence',
     summary:
-      'Engineered 701 route-level features from 139M+ travel-time pairs and trained Random Forest and XGBoost models to predict route quality at scale. The best regression explained 86% of variance in route scores.',
+      'R-squared 0.8626 on route score prediction. 701 route-level features engineered from 139M+ travel-time pairs across 6,112 historical routes. Random Forest and XGBoost models trained to predict delivery route quality at Amazon scale.',
     tags: ['Python', 'XGBoost', 'Random Forest', 'Optimization'],
     highlight: 'R squared 0.8626. Processed 139M+ travel-time pairs using Dask to cut feature creation from hours to seconds.',
     problem:
@@ -325,7 +368,7 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "Delivered a consulting-style adoption strategy for Deere's 500M-acre precision-ag bet. The technology worked. The go-to-market didn't. Cost barriers, usability gaps, and farmer trust were leaving the small and mid-size farms that make up most of the market behind. Structured as a client-ready strategic advisory, not a technology assessment.",
     tags: ['Strategic Analysis', 'AI/IoT', 'Adoption Design'],
-    highlight: 'Adoption strategy for a 500M-acre precision-ag bet. Small and mid-size farms were being left behind.',
+    highlight: 'Adoption strategy for a 500M-acre precision-ag bet. The technology worked. Small and mid-size farms could not afford or use it.',
     problem:
       "Deere's digital transformation strategy was built for scale. The barrier to adoption wasn't the technology. It was cost, data governance concerns, and usability gaps that made precision-ag inaccessible for the small and mid-size farms that make up most of the market.",
     approach: [

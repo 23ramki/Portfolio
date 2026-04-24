@@ -55,113 +55,129 @@ export default function CaseStudyPage() {
     return <Navigate to="/" replace />
   }
 
+  const hasLinks = (study.documents.length > 0) || (study.liveLinks && study.liveLinks.length > 0)
+
   return (
     <main className={`container ${styles.page}`}>
       <CaseStudyMeta study={study} />
-      {/* Hero area */}
-      <motion.div
-        className={styles.hero}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: smooth }}
-      >
-        <p className={styles.eyebrow}>Case Study</p>
-        <h1 className={styles.title}>{study.title}</h1>
-        <p className={styles.summary}>{study.summary}</p>
-      </motion.div>
 
-      <hr className="section-divider" style={{ margin: '1.5rem 0' }} />
-
-      <AnimatedSection direction="up" distance={40} scale={0.98} once>
-        <section className={styles.section}>
-          <h2>Business Problem</h2>
-          <p>{study.problem}</p>
-        </section>
-      </AnimatedSection>
-
-      <hr className="section-divider" style={{ margin: '0.5rem 0' }} />
-
-      <AnimatedSection direction="up" distance={40} scale={0.98} once>
-        <section className={styles.section}>
-          <h2>Data & Approach</h2>
-          <motion.ul
-            className={styles.list}
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
+      {/* Two-column layout — hero + content on left, sidebar on right */}
+      <div className={styles.layout}>
+        {/* Main content */}
+        <div className={styles.main}>
+          <motion.div
+            className={styles.hero}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: smooth }}
           >
-            {study.approach.map((point) => (
-              <motion.li key={point} variants={staggerItem}>{point}</motion.li>
-            ))}
-          </motion.ul>
-        </section>
-      </AnimatedSection>
+            <p className={styles.eyebrow}>Case Study</p>
+            <h1 className={styles.title}>{study.title}</h1>
+            <p className={styles.summary}>{study.summary}</p>
+          </motion.div>
 
-      <hr className="section-divider" style={{ margin: '0.5rem 0' }} />
-
-      <AnimatedSection direction="up" distance={40} scale={0.98} once>
-        <section className={styles.section}>
-          <h2>Results</h2>
-          <motion.ul
-            className={styles.list}
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-40px' }}
-          >
-            {study.results.map((point) => (
-              <motion.li key={point} variants={staggerItem}>{point}</motion.li>
-            ))}
-          </motion.ul>
-        </section>
-      </AnimatedSection>
-
-      {study.documents.length > 0 && (
-        <>
-          <hr className="section-divider" style={{ margin: '0.5rem 0' }} />
+          <hr className="section-divider" style={{ margin: '1.5rem 0' }} />
           <AnimatedSection direction="up" distance={40} scale={0.98} once>
             <section className={styles.section}>
-              <h2>Documentation</h2>
-              <div className={styles.docLinks}>
-                {study.documents.map((doc) => (
-                  <a
-                    key={doc.href}
-                    href={doc.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={styles.docLink}
-                  >
-                    {doc.label}
-                  </a>
-                ))}
-              </div>
+              <h2>Business Problem</h2>
+              <p>{study.problem}</p>
             </section>
           </AnimatedSection>
-        </>
-      )}
 
-      {study.liveLinks && study.liveLinks.length > 0 && (
+          <hr className="section-divider" style={{ margin: '0.5rem 0' }} />
+
+          <AnimatedSection direction="up" distance={40} scale={0.98} once>
+            <section className={styles.section}>
+              <h2>Data & Approach</h2>
+              <motion.ul
+                className={styles.list}
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-40px' }}
+              >
+                {study.approach.map((point) => (
+                  <motion.li key={point} variants={staggerItem}>{point}</motion.li>
+                ))}
+              </motion.ul>
+            </section>
+          </AnimatedSection>
+
+          <hr className="section-divider" style={{ margin: '0.5rem 0' }} />
+
+          <AnimatedSection direction="up" distance={40} scale={0.98} once>
+            <section className={styles.section}>
+              <h2>Results</h2>
+              <motion.ul
+                className={styles.list}
+                variants={staggerContainer}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-40px' }}
+              >
+                {study.results.map((point) => (
+                  <motion.li key={point} variants={staggerItem}>{point}</motion.li>
+                ))}
+              </motion.ul>
+            </section>
+          </AnimatedSection>
+        </div>
+
+        {/* Sidebar */}
+        <aside className={styles.sidebar}>
+          <div className={styles.sidebarBlock}>
+            <p className={styles.sidebarLabel}>Stack</p>
+            <div className={styles.tagList}>
+              {study.tags.map((tag) => (
+                <span key={tag} className={styles.tag}>{tag}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.sidebarBlock}>
+            <p className={styles.sidebarLabel}>Key Result</p>
+            <p className={styles.sidebarHighlight}>{study.highlight}</p>
+          </div>
+
+          {hasLinks && (
+            <div className={styles.sidebarBlock}>
+              <p className={styles.sidebarLabel}>Links</p>
+              <div className={styles.sidebarLinks}>
+                {study.documents.map((doc) => (
+                  <div key={doc.href}>
+                    <a href={doc.href} target="_blank" rel="noreferrer" className={styles.sidebarLink}>
+                      {doc.label} ↗
+                    </a>
+                    {doc.note && <p className={styles.linkNote}>{doc.note}</p>}
+                  </div>
+                ))}
+                {study.liveLinks?.map((link) => (
+                  <div key={link.href}>
+                    <a href={link.href} target="_blank" rel="noreferrer" className={styles.sidebarLink}>
+                      {link.label} ↗
+                    </a>
+                    {link.note && <p className={styles.linkNote}>{link.note}</p>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </aside>
+      </div>
+
+      {/* Screenshots */}
+      {study.screenshots && study.screenshots.length > 0 && (
         <>
           <hr className="section-divider" style={{ margin: '0.5rem 0' }} />
           <AnimatedSection direction="up" distance={40} scale={0.98} once>
             <section className={styles.section}>
-              <h2>Explore</h2>
-              <div className={styles.docLinks}>
-                {study.liveLinks.map((link) => (
-                  <div key={link.href}>
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className={styles.docLink}
-                    >
-                      {link.label} ↗
-                    </a>
-                    {link.note && (
-                      <p className={styles.linkNote}>{link.note}</p>
-                    )}
-                  </div>
+              <h2>In Practice</h2>
+              <div className={styles.screenshotGallery}>
+                {study.screenshots.map((shot) => (
+                  <figure key={shot.src} className={styles.screenshotFigure}>
+                    <img src={shot.src} alt={shot.caption} className={styles.screenshotImg} />
+                    <figcaption className={styles.screenshotCaption}>{shot.caption}</figcaption>
+                  </figure>
                 ))}
               </div>
             </section>

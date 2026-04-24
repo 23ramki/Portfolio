@@ -6,7 +6,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={`container ${styles.inner}`}>
         <p className={styles.tagline}>
-          Built with React and TypeScript. Available for AI implementation, revenue operations, and pre-sales roles.
+          Built with React and TypeScript. Targeting AI implementation, revenue operations, and pre-sales.
         </p>
         <div className={styles.social}>
           <a

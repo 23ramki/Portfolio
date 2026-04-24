@@ -80,6 +80,7 @@ export interface CaseStudy {
   contactSubject: string
   featured?: boolean        // Pin to top of grid with full-width treatment
   preview?: string          // URL to a thumbnail/screenshot shown in the card band
+  screenshots?: { src: string; caption: string }[]
 }
 
 // ─── Project documents section ────────────────────────────
